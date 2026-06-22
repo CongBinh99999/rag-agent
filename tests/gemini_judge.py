@@ -21,7 +21,7 @@ class GeminiJudge(DeepEvalBaseLLM):
         # without changing how the agent answers.
         from langchain_google_genai import ChatGoogleGenerativeAI
         self.model = ChatGoogleGenerativeAI(
-            model=config.LLM_MODEL, google_api_key=config.GOOGLE_API_KEY, temperature=0
+            model=config.LLM_MODEL, google_api_key=config.GOOGLE_API_KEY, temperature=0, timeout=60
         )
 
     def load_model(self):

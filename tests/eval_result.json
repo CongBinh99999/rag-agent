@@ -16,9 +16,9 @@
       },
       {
         "name": "Contextual Recall",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because the retrieval context does not contain the specific numerical confidence threshold of 0.75 mentioned in the expected output."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the default confidence threshold mentioned in the expected output, providing a complete and accurate match!"
       }
     ]
   },
@@ -27,9 +27,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.6,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.60 because the response includes redundant references to the source document instead of directly detailing the specific technologies requested in the input."
+        "reason": "The score is 1.00 because the response accurately and comprehensively identifies the specific technologies used for each memory layer as requested, with no irrelevant information included. Great job providing a precise and focused answer!"
       },
       {
         "name": "Faithfulness",
@@ -41,7 +41,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the retrieval context, specifically nodes 1, 2, and 3, perfectly captures all the memory implementation details mentioned in the expected output. Great job!"
+        "reason": "The score is 1.00 because the expected output is perfectly supported by the information provided in node(s) in retrieval context 2 and 3, which accurately detail the memory implementations."
       }
     ]
   },
@@ -64,7 +64,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the details regarding the token durations mentioned in the expected output!"
+        "reason": "The score is 1.00 because the retrieval context perfectly captures all the details regarding token durations in node 1, providing a complete and accurate match!"
       }
     ]
   },
@@ -87,7 +87,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly confirms the status of the Backend Engineering development item as Over Budget."
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly confirms that the Backend Engineering (Python/FastAPI) item is Over Budget, as stated in the 1st sentence of the expected output. Great job!"
       }
     ]
   },
@@ -110,7 +110,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the financial details and the budget status mentioned in the expected output."
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the financial details and the budget status mentioned in the expected output!"
       }
     ]
   },
@@ -119,21 +119,21 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.80 because while the response addresses the project status and costs, it includes unnecessary clarification regarding unrelated technologies that distract from the core inquiry."
+        "reason": "The score is 1.00 because the response directly and accurately addresses all parts of the query regarding the project's costs and status with great clarity!"
       },
       {
         "name": "Faithfulness",
-        "score": 0.8,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.80 because the actual output incorrectly identifies the development role, whereas the context explicitly states it is Backend Engineering using Python and FastAPI."
+        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
       },
       {
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the financial and status details for Backend Engineering, making the expected output fully accurate!"
+        "reason": "The score is 1.00 because the retrieval context perfectly captures all the financial and status details for Backend Engineering as stated in the expected output node(s) in retrieval context 1."
       }
     ]
   },
@@ -142,21 +142,21 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 1.0,
+        "score": 0.75,
         "passed": true,
-        "reason": "The score is 1.00 because the response accurately and concisely addressed both parts of your inquiry regarding the owner of US-031 and the Sprint 3 planning details. Great job!"
+        "reason": "The score is 0.75 because while the response correctly identifies the owner of US-031, it includes extraneous information regarding retrospective outcomes and improvements that were not requested in the context of the Sprint 3 planning meeting."
       },
       {
         "name": "Faithfulness",
-        "score": 1.0,
+        "score": 0.875,
         "passed": true,
-        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
+        "reason": "The score is 0.88 because the actual output incorrectly includes rate limiting and testing as Sprint 3 commitments, whereas the context specifies only Supervisor Agent routing logic, FAQ sub-agent with RAG, and Telegram human-in-the-loop prototype."
       },
       {
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the retrieval context nodes 1, 2, and 3 perfectly capture all the details regarding Binh's ownership of US-031 and the specific agenda items of the Sprint 3 planning meeting. Great job!"
+        "reason": "The score is 1.00 because the retrieval context nodes 1 and 3 perfectly capture all the details regarding Binh's ownership of US-031 and the specific agenda items from the October 15, 2025, meeting. Excellent work!"
       }
     ]
   },
@@ -165,9 +165,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8,
+        "score": 0.5,
         "passed": true,
-        "reason": "The score is 0.80 because while the response addresses the context of the project guidelines, it includes an irrelevant statement noting the absence of specific requirements in the source document rather than focusing solely on the requested information."
+        "reason": "The score is 0.50 because the response includes irrelevant details about team responsibilities and fails to provide the actual test coverage requirements, instead merely citing the source document."
       },
       {
         "name": "Faithfulness",
@@ -179,7 +179,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the project's goal of reaching 80% test coverage by the end of Sprint 3, as stated in the expected output. Great job!"
+        "reason": "The score is 1.00 because the retrieval context perfectly captures all details, with node 1 confirming the 80% coverage goal and node 4 validating the specific Sprint 3 committed story US-036."
       }
     ]
   },
@@ -188,32 +188,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.3333333333333333,
-        "passed": false,
-        "reason": "The score is 0.33 because the response includes significant irrelevant information regarding personnel, architectural descriptions, and source file lists instead of focusing on the specific documentation requirements requested in the input."
-      },
-      {
-        "name": "Faithfulness",
-        "score": 0.8,
+        "score": 0.5,
         "passed": true,
-        "reason": "The score is 0.80 because the actual output failed to incorporate the specific technical requirements mentioned in the context, such as updating CLAUDE.md, pinning LangChain to v0.3.7, and configuring the Qdrant collection."
-      },
-      {
-        "name": "Contextual Recall",
-        "score": 1.0,
-        "passed": true,
-        "reason": "The score is 1.00 because the 1st node in retrieval context perfectly captures the information regarding the task and deadline mentioned in the expected output."
-      }
-    ]
-  },
-  {
-    "id": "What are the technical specifications for how Chative.IO's multi-agent system integrates RAG and Telegram to automate Tier-1 and Tier-2 support?",
-    "metrics": [
-      {
-        "name": "Answer Relevancy",
-        "score": 1.0,
-        "passed": true,
-        "reason": "The score is 1.00 because the response provided a comprehensive and accurate technical breakdown of the integration, addressing all aspects of the user's query perfectly!"
+        "reason": "The score is 0.50 because while the response addresses the technical documentation requirements, it includes extraneous information regarding task assignments, deadlines, and information sources that are not relevant to the specific requirements defined in CLAUDE.md."
       },
       {
         "name": "Faithfulness",
@@ -225,7 +202,30 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the retrieval context perfectly captures all details, with nodes 1 and 4 comprehensively supporting the system architecture, RAG pipeline components, and the human-in-the-loop escalation process."
+        "reason": "The score is 1.00 because the retrieval context perfectly captures the information regarding Binh's responsibilities and the absence of the CLAUDE.md file content as stated in the expected output."
+      }
+    ]
+  },
+  {
+    "id": "What are the technical specifications for how Chative.IO's multi-agent system integrates RAG and Telegram to automate Tier-1 and Tier-2 support?",
+    "metrics": [
+      {
+        "name": "Answer Relevancy",
+        "score": 0.9,
+        "passed": true,
+        "reason": "The score is 0.90 because the response provides a solid overview of the integration, but it includes unnecessary metadata regarding source files that does not contribute to the technical explanation requested."
+      },
+      {
+        "name": "Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
+      },
+      {
+        "name": "Contextual Recall",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the nodes in retrieval context perfectly align with all sentences in the expected output, providing a comprehensive and accurate overview of the system architecture."
       }
     ]
   },
@@ -236,7 +236,7 @@
         "name": "Answer Relevancy",
         "score": 0.6666666666666666,
         "passed": true,
-        "reason": "The score is 0.67 because while the response addresses the requested Redis and MongoDB technologies, it includes unnecessary information about Qdrant and source metadata that was not asked for."
+        "reason": "The score is 0.67 because the response includes irrelevant citations that fail to address the specific technologies requested, though it does provide some context that keeps it partially relevant."
       },
       {
         "name": "Faithfulness",
@@ -248,7 +248,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the first node in the retrieval context perfectly captures all the technical details regarding the AI agent's memory storage systems."
+        "reason": "The score is 1.00 because the 1st node in retrieval context perfectly captures all the technical details regarding the AI agent's memory storage systems."
       }
     ]
   },
@@ -269,9 +269,9 @@
       },
       {
         "name": "Contextual Recall",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because the node in retrieval context fails to provide the specific functional details for the FAQ, Order, Tech Support, and Escalation agents mentioned in the expected output."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the expected output is perfectly supported by the information provided in node(s) in retrieval context 1 and 2, which accurately detail the roles and technologies for all four agents."
       }
     ]
   },
@@ -280,21 +280,21 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8571428571428571,
+        "score": 0.75,
         "passed": true,
-        "reason": "The score is 0.86 because the response accurately addresses the RAG pipeline status and strategies, but it includes unnecessary details regarding the vector database choice which was not requested."
+        "reason": "The score is 0.75 because while the response addresses the pipeline status, it includes extraneous details about vector databases and source files that do not pertain to the requested ingestion and chunking strategies."
       },
       {
         "name": "Faithfulness",
-        "score": 1.0,
+        "score": 0.8333333333333334,
         "passed": true,
-        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
+        "reason": "The score is 0.83 because the actual output incorrectly identifies the production deployment date as November 2025, whereas the context explicitly states it is scheduled for December 31, 2025."
       },
       {
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in retrieval context perfectly captures all the details regarding the RAG pipeline, Docling, Qdrant, and the finalized chunking strategy."
+        "reason": "The score is 1.00 because the 5th node in retrieval context perfectly captures all the details regarding the RAG pipeline status, ingestion tools, and chunking strategy, making the output fully accurate and complete!"
       }
     ]
   },
@@ -303,9 +303,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.875,
+        "score": 0.6,
         "passed": true,
-        "reason": "The score is 0.88 because the response accurately details the sub-agent interaction protocol but includes extraneous information regarding Escalation Agent and human-in-the-loop processes that falls outside the scope of the specific question asked."
+        "reason": "The score is 0.60 because while the response touches on the architecture, it includes extraneous details about configuration parameters and citations that do not directly explain the interaction protocol requested."
       },
       {
         "name": "Faithfulness",
@@ -315,9 +315,9 @@
       },
       {
         "name": "Contextual Recall",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because the 1st node in the retrieval context fails to identify the specific sub-agents (FAQ, Order, Tech Support, and Escalation) listed in the 1st sentence of the expected output."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the retrieval context, specifically nodes 2, 5, 8, and 9, perfectly captures the LangGraph Supervisor architecture and its sub-agent roster as described in the expected output."
       }
     ]
   },
@@ -332,15 +332,15 @@
       },
       {
         "name": "Faithfulness",
-        "score": 0.25,
-        "passed": false,
-        "reason": "The score is 0.25 because the actual output incorrectly schedules Telegram H-I-T-L v1 for October 2025 instead of November 2025, misplaces the RAG pipeline, email auto-response, and security audit dates, and includes non-existent plans for load testing and production deployment v1.0 in December 2025."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
       },
       {
         "name": "Contextual Recall",
-        "score": 0.6666666666666666,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.67 because node 1 in retrieval context successfully covers the milestones for October and November 2025, but fails to provide information regarding the December 2025 goals of load testing for 10K concurrent users and production deployment v1.0."
+        "reason": "The score is 1.00 because all milestones for October, November, and December 2025 are perfectly captured and attributed to the 4th node in the retrieval context. Excellent work!"
       }
     ]
   },
@@ -349,9 +349,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 1.0,
+        "score": 0.8,
         "passed": true,
-        "reason": "The score is 1.00 because the response accurately and comprehensively addresses both parts of your inquiry with perfect relevance. Great job!"
+        "reason": "The score is 0.80 because the response successfully identifies the project code and milestones, but it includes unnecessary metadata regarding source files that does not contribute to answering the user's specific questions."
       },
       {
         "name": "Faithfulness",
@@ -361,9 +361,9 @@
       },
       {
         "name": "Contextual Recall",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because node 1 in retrieval context only provides the project code, failing to mention the multi-agent orchestration milestone or the July 31, 2025, deadline required for the expected output."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the retrieval context perfectly captures all the necessary details, with node 1 providing the project code and node 5 confirming the milestone completion date."
       }
     ]
   },
@@ -395,9 +395,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.5,
-        "passed": true,
-        "reason": "The score is 0.50 because while the response addresses the topic, it includes irrelevant information about the source document's metadata that does not answer the specific question regarding response time metrics."
+        "score": 0.25,
+        "passed": false,
+        "reason": "The score is 0.25 because the response repeatedly cites source file names instead of providing the requested information regarding the impact of the AI-first routing objective on response time metrics."
       },
       {
         "name": "Faithfulness",
@@ -409,7 +409,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the AI-first routing objective and the specific 60% reduction goal mentioned in the expected output."
+        "reason": "The score is 1.00 because the retrieval context, specifically node 1 and node 2, perfectly captures the AI-first routing objective and the 60% response time reduction goal!"
       }
     ]
   },
@@ -432,7 +432,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly confirms that Bob Tran is the developer assigned to BUG-005, making the information entirely accurate and complete!"
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly confirms that Bob Tran is the developer assigned to BUG-005, making the information fully accurate and complete!"
       }
     ]
   },
@@ -455,7 +455,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in retrieval context perfectly captures both the status and assignment details for BUG-004, allowing for a complete and accurate verification of the expected output."
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the status and assignment details for BUG-004, allowing for a complete and accurate verification of the expected output!"
       }
     ]
   },
@@ -464,9 +464,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.80 because the response successfully addresses the bug status and description, but it includes unnecessary metadata regarding the source file name which is irrelevant to the user's specific question."
+        "reason": "The score is 1.00 because the response is perfectly accurate and directly addresses the inquiry about BUG-006 with no irrelevant information included. Great job!"
       },
       {
         "name": "Faithfulness",
@@ -478,7 +478,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in retrieval context perfectly captures both the current status and the specific inactivity timeout details mentioned in the expected output."
+        "reason": "The score is 1.00 because the retrieval context perfectly captures all the details regarding the status and description of BUG-006 in the 1st node, providing a complete and accurate summary!"
       }
     ]
   },
@@ -501,7 +501,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the details regarding the status and assignment for REQ-010, making the expected output fully accurate!"
+        "reason": "The score is 1.00 because the 3rd node in the retrieval context perfectly captures all the details regarding REQ-010, including its name, status, and assignee. Great job!"
       }
     ]
   },
@@ -510,21 +510,21 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.80 because the response included the source file name, which is irrelevant to the status of Alice Nguyen's high-priority requirements, though the core information requested was otherwise accurate."
+        "reason": "The score is 1.00 because the response is perfectly aligned with the input, providing exactly the information requested about Alice Nguyen's high-priority requirements with no extraneous details."
       },
       {
         "name": "Faithfulness",
-        "score": 1.0,
+        "score": 0.6666666666666666,
         "passed": true,
-        "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and consistency!"
+        "reason": "The score is 0.67 because the actual output incorrectly labels REQ-001 and REQ-002 as high-priority requirements, which is information not supported by the provided retrieval context."
       },
       {
         "name": "Contextual Recall",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because the retrieval context fails to mention the User Authentication requirement assigned to Alice Nguyen in the expected output, despite identifying her other four assignments across nodes in retrieval context 1, 2, 3, and 4."
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because all requirements assigned to Alice Nguyen are accurately captured across nodes 1, 2, 3, and 4 in the retrieval context, providing a perfect match!"
       }
     ]
   },
@@ -533,9 +533,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 1.0,
+        "score": 0.6666666666666666,
         "passed": true,
-        "reason": "The score is 1.00 because the response accurately and concisely provided the requested assignee and story point estimate for REQ-012 without any extraneous information."
+        "reason": "The score is 0.67 because while the response correctly identifies the assignee and story points, it includes unnecessary information regarding the data source that was not requested."
       },
       {
         "name": "Faithfulness",
@@ -547,7 +547,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the details regarding the assignment and story points for REQ-012, making the information fully accurate and complete!"
+        "reason": "The score is 1.00 because the 2nd node in the retrieval context perfectly captures all the details regarding REQ-012, including the assignee and story point estimate, making the information fully accurate and complete!"
       }
     ]
   },
@@ -570,7 +570,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the information in the expected output is perfectly supported by node(s) in retrieval context 1 and 2, which accurately identify the production URL and its function as a RESTful API endpoint."
+        "reason": "The score is 1.00 because the production server URL is accurately identified in node 2 of the retrieval context, perfectly matching the expected output!"
       }
     ]
   },
@@ -579,9 +579,9 @@
     "metrics": [
       {
         "name": "Answer Relevancy",
-        "score": 0.8,
-        "passed": true,
-        "reason": "The score is 0.80 because the response accurately explains the bearerAuth security scheme, but it unnecessarily includes the source file name, which is irrelevant metadata that does not contribute to the user's question."
+        "score": 0.4,
+        "passed": false,
+        "reason": "The score is 0.40 because the response includes significant irrelevant information regarding component importance, project dependencies, and functional modules instead of focusing on the technical definition of the bearerAuth security scheme as requested."
       },
       {
         "name": "Faithfulness",
@@ -593,7 +593,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures all the details regarding the bearerAuth security scheme definition, including its type, scheme, and format."
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the definition of the bearerAuth security scheme, including its type, scheme, and format, matching the expected output exactly!"
       }
     ]
   },
@@ -616,7 +616,7 @@
         "name": "Contextual Recall",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the 2nd node in the retrieval context perfectly confirms that email and password are the required fields for the login request, making the expected output fully accurate!"
+        "reason": "The score is 1.00 because the 1st node in the retrieval context perfectly captures the required fields for the /auth/login request, ensuring complete accuracy!"
       }
     ]
   }

@@ -1,0 +1,623 @@
+[
+  {
+    "id": "conversational_test_case_0",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_1",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions, hallucinations, or unsupported claims identified across all evaluated segments."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 0.6666666666666666,
+        "passed": true,
+        "reason": "The score is 0.67 because the LLM incorrectly stated the budget as $48,000 and velocity as 38.2 points, failing to retain the established facts of a $52,000 budget and 42-point velocity."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_2",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_3",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_4",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_5",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_6",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions, hallucinations, or unsupported claims identified across all evaluated segments."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_7",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions, hallucinations, or unsupported claims identified across all evaluated segments."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_8",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_9",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_10",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_11",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_12",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 0.0,
+        "passed": false,
+        "reason": "The score is 0.00 because the LLM completely inverted the established definitions of BUG-002 and BUG-004, incorrectly identifying the Safari dashboard bug and the duplicate notification issue."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_13",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_14",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_15",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.75,
+        "passed": true,
+        "reason": "The score is 0.75 because the model's output was found to be entirely consistent with the provided retrieval context, with no contradictions or unsupported claims identified during the evaluation process."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_16",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 0.0,
+        "passed": false,
+        "reason": "The score is 0.00 because the LLM incorrectly attributed the implementation details to 04_project_charter.pdf and 05_technical_architecture.pdf, failing to recall that this information is actually contained within the API docs and meeting notes."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_17",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_18",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.8888888888888888,
+        "passed": true,
+        "reason": "The score is 0.8888888888888888 because the model's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 0.3333333333333333,
+        "passed": false,
+        "reason": "The score is 0.33 because the LLM failed to recall that REQ-010 is assigned to Alice Nguyen for 2FA implementation and incorrectly contradicted established knowledge regarding the impacting factors of test coverage and multi-agent orchestration."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_19",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_20",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_21",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_22",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_23",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_24",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_25",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_26",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Knowledge Retention",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+      }
+    ]
+  }
+]

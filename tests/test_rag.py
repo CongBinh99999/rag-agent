@@ -120,10 +120,9 @@ def run_multi() -> None:
         TurnFaithfulnessMetric(model=judge),
         KnowledgeRetentionMetric(model=judge),
     ]
-    # flash-lite hits 429 at deepeval's default 20-way concurrency, which
-    # cascades into per-case TimeoutError. Throttle + cap concurrency.
+    # Paid plan: utilize higher concurrency (20-way) and no throttling for faster evaluation
     res = evaluate(test_cases=convos, metrics=metrics,
-                   async_config=AsyncConfig(max_concurrent=3, throttle_value=2))
+                   async_config=AsyncConfig(max_concurrent=20, throttle_value=0))
     _dump(res, "eval_multi_result.json")
 
 

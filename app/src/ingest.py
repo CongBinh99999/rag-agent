@@ -48,8 +48,7 @@ def _linearize_tables(markdown: str) -> str:
         )
         if not is_table:
             out.append(lines[i]); i += 1; continue
-        out.append(lines[i])  # keep header (search still benefits from column names)
-        i += 2  # skip header + separator
+        i += 2  # skip header + separator (clean table rows are linearized and self-describing, so keeping header causes semantic dilution)
         while i < len(lines) and lines[i].strip().startswith("|") and not _is_sep(lines[i]):
             row = _cells(lines[i])
             if len(row) == len(hdr):

@@ -60,7 +60,7 @@ def neo4j():
 
 @lru_cache
 def llm() -> ChatGoogleGenerativeAI:
-    return ChatGoogleGenerativeAI(model=LLM_MODEL, google_api_key=GOOGLE_API_KEY)
+    return ChatGoogleGenerativeAI(model=LLM_MODEL, google_api_key=GOOGLE_API_KEY, temperature=0, timeout=60)
 
 
 @lru_cache
