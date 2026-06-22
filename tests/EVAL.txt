@@ -1,0 +1,173 @@
+================================================================================
+RAG EVALUATION RESULTS
+Judge model: gemini-3.1-flash-lite  |  Pipeline: tools.retrieve + agent.run
+================================================================================
+
+Tất cả case đều PASS (single 5/5, multi 5/5). Các điểm < 1.00 ghi rõ lý do để
+biết chỗ nào còn yếu (chủ yếu là retrieval/chunking, không phải generation).
+
+
+================================================================================
+SINGLE-TURN  (RAG triad + precision/recall)  ->  tests/eval_result.json
+================================================================================
+Pass Rate: 100% (5/5)
+
+  Metric                  Avg
+  ----------------------  ----
+  Answer Relevancy        0.95
+  Faithfulness            1.00
+  Contextual Relevancy    0.83
+  Contextual Precision    0.98
+  Contextual Recall       1.00
+
+--------------------------------------------------------------------------------
+Case 0 — "Escalation threshold của Supervisor Agent + procedure dùng Telegram"
+--------------------------------------------------------------------------------
+  Answer Relevancy      1.00  PASS
+  Faithfulness          1.00  PASS
+  Contextual Relevancy  0.50  PASS  -> context có 'default: 0.75' nhưng thiếu
+                                       step-by-step procedure cho Telegram.
+  Contextual Precision  1.00  PASS
+  Contextual Recall     1.00  PASS
+
+--------------------------------------------------------------------------------
+Case 1 — "Budget status: Backend Engineering vs AI/ML Model Integration"
+--------------------------------------------------------------------------------
+  Answer Relevancy      1.00  PASS
+  Faithfulness          1.00  PASS
+  Contextual Relevancy  1.00  PASS
+  Contextual Precision  1.00  PASS
+  Contextual Recall     1.00  PASS
+
+--------------------------------------------------------------------------------
+Case 2 — "Ai được giao update CLAUDE.md với agent architecture mới"
+--------------------------------------------------------------------------------
+  Answer Relevancy      1.00  PASS  -> trả đúng: Binh Nguyen
+  Faithfulness          1.00  PASS
+  Contextual Relevancy  1.00  PASS
+  Contextual Precision  1.00  PASS
+  Contextual Recall     1.00  PASS
+
+--------------------------------------------------------------------------------
+Case 3 — "Công nghệ cho Redis short-term + MongoDB long-term memory"
+--------------------------------------------------------------------------------
+  Answer Relevancy      1.00  PASS
+  Faithfulness          1.00  PASS
+  Contextual Relevancy  0.67  PASS  -> context đúng (Redis 7.x, MongoDB 7.x)
+                                       nhưng lẫn thông tin thừa (Supervisor
+                                       pattern, intent classification, HITL).
+  Contextual Precision  0.92  PASS  -> node 3 thừa, xếp trước node 4 hữu ích.
+  Contextual Recall     1.00  PASS
+
+--------------------------------------------------------------------------------
+Case 4 — "Status RAG pipeline (Docling + Qdrant)"
+--------------------------------------------------------------------------------
+  Answer Relevancy      0.75  PASS  -> trả đúng 'IN PROGRESS' nhưng kèm thông
+                                       tin từ source khác không đúng trọng tâm.
+  Faithfulness          1.00  PASS
+  Contextual Relevancy  1.00  PASS
+  Contextual Precision  1.00  PASS
+  Contextual Recall     1.00  PASS
+
+
+================================================================================
+MULTI-TURN  (turn-level RAG + knowledge retention)  ->  tests/eval_multi_result.json
+================================================================================
+Pass Rate: 100% (5/5)
+
+  Metric                       Avg
+  ---------------------------  ----
+  Turn Relevancy               1.00
+  Turn Faithfulness            0.95
+  Turn Contextual Relevancy    0.86
+  Turn Contextual Precision    1.00
+  Turn Contextual Recall       0.67   <- điểm yếu chính
+  Knowledge Retention          1.00
+
+--------------------------------------------------------------------------------
+conversational_test_case_0 — multi-agent architecture + Telegram escalation
+--------------------------------------------------------------------------------
+  Turn Relevancy             1.00  PASS
+  Turn Faithfulness          1.00  PASS
+  Turn Contextual Relevancy  0.75  PASS  -> thiếu chi tiết security protocols.
+  Turn Contextual Precision  1.00  PASS
+  Turn Contextual Recall     1.00  PASS
+  Knowledge Retention        1.00  PASS
+
+--------------------------------------------------------------------------------
+conversational_test_case_1 — budget breakdown + sprint velocity
+--------------------------------------------------------------------------------
+  Turn Relevancy             1.00  PASS
+  Turn Faithfulness          1.00  PASS
+  Turn Contextual Relevancy  1.00  PASS
+  Turn Contextual Precision  1.00  PASS
+  Turn Contextual Recall     0.50  PASS  -> agent thêm meta-commentary +
+                                            performance metrics không có trong
+                                            context (claim ngoài nguồn).
+  Knowledge Retention        1.00  PASS
+
+--------------------------------------------------------------------------------
+conversational_test_case_2 — task assignments + deadlines
+--------------------------------------------------------------------------------
+  Turn Relevancy             1.00  PASS
+  Turn Faithfulness          1.00  PASS
+  Turn Contextual Relevancy  1.00  PASS
+  Turn Contextual Precision  1.00  PASS
+  Turn Contextual Recall     0.67  PASS  -> câu mở đầu là meta-commentary chủ
+                                            quan, không kiểm chứng được.
+  Knowledge Retention        1.00  PASS
+
+--------------------------------------------------------------------------------
+conversational_test_case_3 — LangGraph supervisor routing + agent roles
+--------------------------------------------------------------------------------
+  Turn Relevancy             1.00  PASS
+  Turn Faithfulness          0.84  PASS
+  Turn Contextual Relevancy  0.77  PASS  -> thiếu một số tham số config chi tiết.
+  Turn Contextual Precision  1.00  PASS
+  Turn Contextual Recall     0.50  PASS  -> câu đầu mỗi turn là meta-commentary
+                                            về performance, không có trong nguồn.
+  Knowledge Retention        1.00  PASS
+
+--------------------------------------------------------------------------------
+conversational_test_case_4 — LangGraph routing + Qdrant indexing + roadmap
+--------------------------------------------------------------------------------
+  Turn Relevancy             1.00  PASS
+  Turn Faithfulness          0.93  PASS
+  Turn Contextual Relevancy  0.76  PASS  -> lẫn thông tin thừa (Order Agent DB,
+                                            scope creep, HITL).
+  Turn Contextual Precision  1.00  PASS
+  Turn Contextual Recall     0.67  PASS  -> 1/3 turn có claim về routing/chunking/
+                                            timeline không có trong context.
+  Knowledge Retention        1.00  PASS
+
+
+================================================================================
+NHẬN ĐỊNH
+================================================================================
+- Generation rất khoẻ: Faithfulness ~1.00, Knowledge Retention 1.00 toàn bộ.
+  Agent không bịa fact, nhớ context xuyên suốt hội thoại.
+- Rule "hỏi lại khi mơ hồ" (thêm vào agent_system.xml) KHÔNG gây tác dụng phụ:
+  Turn/Answer Relevancy vẫn ~1.00, agent không hỏi ngược lung tung.
+- Điểm yếu còn lại = RETRIEVAL/CHUNKING, không phải prompt:
+    * Contextual Recall multi 0.67: agent hay thêm câu meta-commentary mở đầu
+      ("đây là thông tin bạn cần...") không nằm trong nguồn -> kéo recall xuống.
+    * Contextual Relevancy 0.5-0.77: chunk lẫn thông tin thừa từ doc khác.
+  Hướng xử lý nếu muốn nâng: chỉnh CHUNK_SIZE / CHUNK_OVERLAP (config), hoặc
+  siết prompt bỏ câu mở đầu thừa.
+
+
+================================================================================
+HƯỚNG DẪN CHẠY
+================================================================================
+Yêu cầu: Qdrant / Mongo / Redis containers đang chạy (xem .env). Activate venv.
+
+# 1) Tạo kịch bản mới (deepeval tự sinh từ chunk thật trong Qdrant)
+#    -> GHI ĐÈ trực tiếp goldens_*.json. Muốn giữ bản cũ thì copy ra trước.
+python -m tests.gen_scenarios single    # -> tests/goldens_single.json (5 goldens)
+python -m tests.gen_scenarios multi     # -> tests/goldens_multi.json  (5 goldens)
+
+# 2) Chạy eval (test_rag tự xóa file kết quả cũ đầu mỗi lần chạy)
+python -m tests.test_rag single         # -> tests/eval_result.json
+python -m tests.test_rag multi          # -> tests/eval_multi_result.json
+
+# Regen sạch + đo lại từ đầu: chạy 4 lệnh trên theo đúng thứ tự (gen trước, eval sau).

@@ -1,0 +1,11 @@
+langchain
+langchain-google-genai
+langchain-community
+langchain-text-splitters
+python-dotenv
+qdrant-client
+pymongo
+redis
+markitdown[all]
+chainlit
+deepeval

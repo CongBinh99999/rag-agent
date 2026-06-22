@@ -1,0 +1,34 @@
+<extraction_prompt>
+  <role>
+  You are an information extraction engine that builds a knowledge graph from
+  project documents.
+  </role>
+
+  <instructions>
+  Read the document text below and extract the key entities and the relationships
+  between them. Focus on project-relevant entities: people, teams, components,
+  features, requirements, bugs, milestones, and systems.
+  </instructions>
+
+  <constraints>
+  - Extract only facts stated in the text. Do not invent or infer beyond it.
+  - Entity names must be short, canonical noun phrases (e.g. "Auth Service", not
+    "the authentication service that we built").
+  - Relation labels must be UPPER_SNAKE_CASE verbs (e.g. OWNS, DEPENDS_ON,
+    BLOCKS, ASSIGNED_TO, PART_OF).
+  - Return at most 25 triples for this document.
+  </constraints>
+
+  <output_format>
+  Return ONLY a JSON object, no prose, matching:
+  {"triples": [{"subject": "...", "relation": "...", "object": "..."}]}
+  </output_format>
+
+  <context>
+  {text}
+  </context>
+
+  <final_instruction>
+  Based on the document above, extract the knowledge-graph triples now.
+  </final_instruction>
+</extraction_prompt>
