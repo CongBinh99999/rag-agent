@@ -4,8 +4,12 @@
   project documents.
   </role>
 
+  <context>
+  {text}
+  </context>
+
   <instructions>
-  Read the document text below and extract the key entities and the relationships
+  Read the document text above and extract the key entities and the relationships
   between them. Focus on project-relevant entities: people, teams, components,
   features, requirements, bugs, milestones, and systems.
   </instructions>
@@ -24,11 +28,7 @@
   {"triples": [{"subject": "...", "relation": "...", "object": "..."}]}
   </output_format>
 
-  <context>
-  {text}
-  </context>
-
   <final_instruction>
-  Based on the document above, extract the knowledge-graph triples now.
+  Based on the document context and constraints above, extract the knowledge-graph triples and return the JSON object now.
   </final_instruction>
 </extraction_prompt>

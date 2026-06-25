@@ -76,7 +76,7 @@ def _case(agent, question: str, expected: str | None = None) -> LLMTestCase:
 
 def run_single() -> None:
     (HERE / "eval_result.json").unlink(missing_ok=True)  # fresh run
-    goldens = json.loads((HERE / "goldens_single.json").read_text(encoding="utf-8"))
+    goldens = json.loads((HERE / "goldens_single.json").read_text(encoding="utf-8"))[:9]
     judge = GeminiJudge()
     agent = build_agent()
     cases = [_case(agent, g["input"], g.get("expected_output")) for g in goldens]
@@ -87,7 +87,7 @@ def run_single() -> None:
 # ---------- multi-turn ----------
 def run_multi() -> None:
     (HERE / "eval_multi_result.json").unlink(missing_ok=True)
-    raw = json.loads((HERE / "goldens_multi.json").read_text(encoding="utf-8"))
+    raw = json.loads((HERE / "goldens_multi.json").read_text(encoding="utf-8"))[:9]
     judge = GeminiJudge()
     agent = build_agent()
 

@@ -87,6 +87,23 @@ def _restore_headers(chunk: str, row2hdr: dict[str, str]) -> str:
     return chunk
 
 
+import re
+from pathlib import Path
+
+def _find_nearest_header(markdown: str, chunk: str) -> str | None:
+    """Find the nearest markdown heading preceding the chunk's content."""
+    idx = markdown.find(chunk)
+    if idx == -1:
+        return None
+    text_before = markdown[:idx]
+    lines = text_before.splitlines()
+    for line in reversed(lines):
+        line_s = line.strip()
+        if line_s.startswith("#") or re.match(r"^\d+\.\s+[A-Z]", line_s):
+            return line_s
+    return None
+
+
 def ingest(path: str, org_id: str | None = None) -> int:
     """Convert one file, store chunks. Returns number of chunks indexed."""
     org_id = org_id or config.ORG_ID
@@ -97,7 +114,21 @@ def ingest(path: str, org_id: str | None = None) -> int:
     stores.save_doc(path, markdown, org_id)
     markdown = _linearize_tables(markdown)  # clean tables -> self-describing rows
     row2hdr = _row_headers(markdown)
-    chunks = [_restore_headers(c, row2hdr) for c in _splitter.split_text(markdown)]
+    raw_chunks = _splitter.split_text(markdown)
+    
+    chunks = []
+    for c in raw_chunks:
+        c_restored = _restore_headers(c, row2hdr)
+        
+        # Build contextual prefix
+        hdr = _find_nearest_header(markdown, c)
+        context_prefix = f"Document: {Path(path).name}"
+        if hdr and hdr not in c:
+            header_text = hdr.lstrip("# ").strip()
+            context_prefix += f" | Section: {header_text}"
+            
+        chunks.append(f"{context_prefix}\n\n{c_restored}")
+
     vectors = embeddings.embed_docs(chunks)
     stores.ensure_collection(dim=len(vectors[0]))
 

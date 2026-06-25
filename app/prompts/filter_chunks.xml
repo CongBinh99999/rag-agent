@@ -5,6 +5,14 @@
   question and drop everything irrelevant.
   </role>
 
+  <question>
+  {query}
+  </question>
+
+  <chunks>
+  {chunks}
+  </chunks>
+
   <instructions>
   For each chunk, keep only the lines/sentences that help answer the question.
   Drop unrelated rows, headers, boilerplate, and facts about other entities.
@@ -26,11 +34,7 @@
   Return {"kept": []} if nothing is relevant.
   </output_format>
 
-  <question>
-  {query}
-  </question>
-
-  <chunks>
-  {chunks}
-  </chunks>
+  <final_instruction>
+  Based on the question and chunks above, filter and return the JSON object now.
+  </final_instruction>
 </prompt>

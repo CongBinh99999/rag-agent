@@ -2,17 +2,18 @@
 import json
 
 from langchain_core.tools import tool
+from langchain_core.runnables import RunnableConfig
 
 from . import config, stores, embeddings, graph
 
 
-def _filter_chunks(query: str, hits: list[dict]) -> list[dict]:
+def _filter_chunks(query: str, hits: list[dict], runnable_config: RunnableConfig | None = None) -> list[dict]:
     """B2: LLM drops chunk text irrelevant to the query (cuts in-chunk noise that
     top_k/chunk_size can't). Falls back to unfiltered hits on any failure."""
     chunks = "\n\n".join(f"[{h['source']}]\n{h['text']}" for h in hits)
     prompt = config.load_prompt("filter_chunks.xml").replace("{query}", query).replace("{chunks}", chunks)
     try:
-        raw = config.llm().invoke(prompt).content
+        raw = config.llm().invoke(prompt, config=runnable_config).content
         if isinstance(raw, list):
             raw = "".join(b.get("text", "") for b in raw if isinstance(b, dict))
         raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
@@ -38,7 +39,7 @@ def _rerank(query: str, hits: list[dict], top_k: int) -> list[dict]:
         return hits[:top_k]
 
 
-def retrieve(query: str, k: int | None = None) -> list[dict]:
+def retrieve(query: str, k: int | None = None, runnable_config: RunnableConfig | None = None) -> list[dict]:
     """Core retrieval used by BOTH the agent tool and eval. One path, so tuning
     config.TOP_K changes what eval measures too. Returns chunk payloads (text+source).
     Pipeline: cosine pool -> cross-encoder rerank -> top_k -> LLM filter."""
@@ -48,14 +49,14 @@ def retrieve(query: str, k: int | None = None) -> list[dict]:
     hits = [h.payload for h in stores.search(vec, k=pool, org_id=config.ORG_ID)]
     if config.RERANK and hits:
         hits = _rerank(query, hits, top_k)
-    return _filter_chunks(query, hits) if config.FILTER and hits else hits
+    return _filter_chunks(query, hits, runnable_config=runnable_config) if config.FILTER and hits else hits
 
 
 @tool
-def retrieve_docs(query: str) -> str:
+def retrieve_docs(query: str, runnable_config: RunnableConfig) -> str:
     """Search internal knowledge base for info relevant to the query.
     Returns matching passages with their source. Use for any factual question."""
-    hits = retrieve(query)
+    hits = retrieve(query, runnable_config=runnable_config)
     if not hits:
         return "No relevant documents found."
     return "\n\n".join(f"[{h['source']}]\n{h['text']}" for h in hits)

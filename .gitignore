@@ -230,3 +230,4 @@ chat_history.db-wal
 .chainlit/config.toml
 .claude
 .deepeval
+.superpowers/
