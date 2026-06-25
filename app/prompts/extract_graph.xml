@@ -9,26 +9,20 @@
   </context>
 
   <instructions>
-  Read the document text above and extract the key entities and the relationships
-  between them. Focus on project-relevant entities: people, teams, components,
-  features, requirements, bugs, milestones, and systems.
+  Extract all entities and relationships explicitly stated in the document text.
+  Return them as a list of triples: (subject, relation, object).
   </instructions>
 
   <constraints>
-  - Extract only facts stated in the text. Do not invent or infer beyond it.
-  - Entity names must be short, canonical noun phrases (e.g. "Auth Service", not
-    "the authentication service that we built").
-  - Relation labels must be UPPER_SNAKE_CASE verbs (e.g. OWNS, DEPENDS_ON,
-    BLOCKS, ASSIGNED_TO, PART_OF).
+  - Extract only facts explicitly stated in the text. Do not infer or derive
+    relationships from indirect associations.
+  - Entity names must be short, canonical noun phrases.
+  - Relation labels must be UPPER_SNAKE_CASE verbs.
   - Return at most 25 triples for this document.
   </constraints>
 
   <output_format>
-  Return ONLY a JSON object, no prose, matching:
+  Return ONLY a JSON object, no prose, no markdown, matching exactly:
   {"triples": [{"subject": "...", "relation": "...", "object": "..."}]}
   </output_format>
-
-  <final_instruction>
-  Based on the document context and constraints above, extract the knowledge-graph triples and return the JSON object now.
-  </final_instruction>
 </extraction_prompt>

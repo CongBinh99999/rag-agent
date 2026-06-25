@@ -14,18 +14,16 @@
   </chunks>
 
   <instructions>
-  For each chunk, keep only the lines/sentences that help answer the question.
-  Drop unrelated rows, headers, boilerplate, and facts about other entities.
-  If a chunk has nothing relevant, omit it entirely. Never add or reword facts —
-  copy relevant text verbatim. Preserve the source filename for kept text.
+  - For each chunk, keep only the lines relevant to answering the question.
+  - Drop unrelated rows, headers, boilerplate, and facts about other entities.
+  - If a chunk has nothing relevant, omit it entirely.
+  - Preserve the source filename for every kept chunk.
+  - Preserve the input order of chunks. Do not reorder.
   </instructions>
 
   <constraints>
-  - Copy text verbatim from the chunks. Do not paraphrase, summarize, or invent.
-  - Keep a chunk's text only if it is relevant to the question.
-  - It is better to keep a borderline-relevant line than to drop a needed fact.
-  - Preserve the input order of chunks. The chunks are pre-ranked by relevance;
-    keep that order in your output. Do not reorder.
+  - Copy text verbatim. Do not paraphrase, summarize, or invent.
+  - When relevance is borderline, keep the text rather than drop it.
   </constraints>
 
   <output_format>
@@ -33,8 +31,4 @@
   {"kept": [{"source": "...", "text": "..."}]}
   Return {"kept": []} if nothing is relevant.
   </output_format>
-
-  <final_instruction>
-  Based on the question and chunks above, filter and return the JSON object now.
-  </final_instruction>
 </prompt>

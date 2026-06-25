@@ -27,9 +27,10 @@ from deepeval.metrics import (  # noqa: E402
     AnswerRelevancyMetric,
     FaithfulnessMetric,
     ContextualRecallMetric,
+    ContextualPrecisionMetric,
     TurnRelevancyMetric,
-    KnowledgeRetentionMetric,
     TurnFaithfulnessMetric,
+    TurnContextualPrecisionMetric,
 )
 
 from src import config  # noqa: E402
@@ -63,6 +64,7 @@ def _metrics(judge):
         AnswerRelevancyMetric(model=judge),
         FaithfulnessMetric(model=judge),
         ContextualRecallMetric(model=judge),
+        ContextualPrecisionMetric(model=judge),
     ]
 
 
@@ -76,7 +78,7 @@ def _case(agent, question: str, expected: str | None = None) -> LLMTestCase:
 
 def run_single() -> None:
     (HERE / "eval_result.json").unlink(missing_ok=True)  # fresh run
-    goldens = json.loads((HERE / "goldens_single.json").read_text(encoding="utf-8"))[:9]
+    goldens = json.loads((HERE / "goldens_single.json").read_text(encoding="utf-8"))
     judge = GeminiJudge()
     agent = build_agent()
     cases = [_case(agent, g["input"], g.get("expected_output")) for g in goldens]
@@ -87,7 +89,7 @@ def run_single() -> None:
 # ---------- multi-turn ----------
 def run_multi() -> None:
     (HERE / "eval_multi_result.json").unlink(missing_ok=True)
-    raw = json.loads((HERE / "goldens_multi.json").read_text(encoding="utf-8"))[:9]
+    raw = json.loads((HERE / "goldens_multi.json").read_text(encoding="utf-8"))
     judge = GeminiJudge()
     agent = build_agent()
 
@@ -118,7 +120,7 @@ def run_multi() -> None:
     metrics = [
         TurnRelevancyMetric(model=judge),
         TurnFaithfulnessMetric(model=judge),
-        KnowledgeRetentionMetric(model=judge),
+        TurnContextualPrecisionMetric(model=judge),
     ]
     # Paid plan: utilize higher concurrency (20-way) and no throttling for faster evaluation
     res = evaluate(test_cases=convos, metrics=metrics,

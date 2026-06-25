@@ -1,137 +1,182 @@
 [
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of questions regarding the AI Customer Agent Project's budget, specifically requesting factual data from project documents to understand why Backend Engineering costs exceeded the budget while infrastructure expenses remained stable, and how sprint velocity metrics are documented in relation to development spending.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that Backend Engineering is over budget at $52,000 while infrastructure costs remain on track, and providing the sprint velocity data to contextualize development performance.",
+    "scenario": "An employee asks the internal knowledge assistant for the login credentials and bearerAuth scheme for the AI Customer Agent API, and the assistant provides the information while reminding the employee to verify that their password meets the mandatory eight-character minimum length requirement as stated in the API documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The employee learns that the API uses a JWT-based bearerAuth scheme and that the login endpoint requires an email and a password with a minimum length of eight characters.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding project documentation to understand the correlation between backend engineering costs and sprint velocity, with the assistant providing factual answers based strictly on retrieved project reports and budget logs.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that Backend Engineering is currently over budget at $52,000 while sprint velocity has fluctuated between 32 and 44 completed points.",
+    "scenario": "An employee asks an internal knowledge assistant to explain the message constraints and language enums for the Chative.IO API /chat endpoint, followed by a request for the implementation details of the /chat/{session_id}/history GET request, with the assistant providing answers based strictly on the internal API documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that the /chat endpoint requires a message string (max 4096 characters) and supports 'en', 'vi', and 'zh' languages, while explaining that the /chat/{session_id}/history endpoint requires a session_id path parameter and accepts an optional limit query parameter.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding the 2025 budget allocations for AI infrastructure, specifically requesting factual details from project documents about LangChain and LangGraph licensing costs and reporting requirements.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the LangChain/LangGraph license costs and project management reporting status.",
+    "scenario": "A QA engineer asks an internal knowledge assistant about the health check endpoint and document ingestion process, ensuring the assistant provides answers grounded in the API specification while the engineer maintains the required bearer token and message length constraints.",
+    "expected_outcome": "The employee's factual questions regarding the health check endpoint and document ingestion process are answered correctly and concisely using the API specification, confirming the required authentication and request parameters.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant to retrieve information from project documentation comparing the orchestration capabilities of LangGraph and LangChain, followed by a request for technical specifications from the architecture documents regarding the recommended storage solutions for long-term memory in the AI Customer Agent.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that LangGraph handles multi-agent workflow and state management while LangChain manages chains, tools, and prompt templates, and identifying MongoDB as the designated solution for long-term memory.",
+    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding project documentation, and the assistant provides factual answers based strictly on retrieved internal documents such as API specifications and meeting minutes.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant about the specific JWT authentication implementation and rate limiting configurations defined in the company's API documentation, and then asks follow-up questions based on the assistant's provided answers regarding system behavior under load.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that the API uses RS256 JWT authentication with a 15-minute access token and a 7-day refresh token, and that rate limiting is enforced at 60 requests per minute per user and 1000 requests per minute per IP via a Redis sliding window.",
+    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding the implementation details of dynamic tool filtering as documented in the company's API specifications and project requirements, and the assistant provides factual answers based strictly on the retrieved internal documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying how to implement dynamic tool filtering using middleware hooks for state, context, and runtime-registered tools.",
     "user_description": null
   },
   {
-    "scenario": "A backend engineer asks the internal knowledge assistant for specific chat API endpoints and MongoDB schema details from the project documentation, while ensuring the assistant confirms compliance with the 60 req/min rate limit and verifies that the provided schema documentation contains no hardcoded secrets.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the chat API endpoints, the MongoDB schema structure, the 60 req/min rate limit, and the security policy prohibiting hardcoded secrets.",
+    "scenario": "An employee asks the internal knowledge assistant for technical guidance on using middleware to convert exceptions into ToolMessages, specifically referencing the project's API documentation to ensure compatibility with the agent's model provider and execution loop.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The conversation clarifies how to implement the `handle_tool_errors` middleware using `wrap_tool_call` to catch exceptions and return a `ToolMessage`, ensuring the agent can gracefully handle and report tool execution errors.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant to explain the API security architecture, specifically how the bearerAuth scheme integrates with the /auth/login endpoint to generate tokens and which headers are required for the /chat/history and /documents/ingest endpoints, based on the provided technical documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that the /auth/login endpoint returns access and refresh tokens upon successful authentication, which are then used with the bearerAuth security scheme to authorize requests to the /chat/history and /documents/ingest endpoints via the required Authorization header.",
+    "scenario": "An employee asks an internal knowledge assistant a series of factual questions regarding project budget documentation, infrastructure costs, and backend engineering expenses, requiring the assistant to provide answers grounded strictly in the retrieved project financial reports and internal tracking documents.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the specific infrastructure costs and identifying that the Backend Engineering category is currently over budget.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant to clarify the specific API requirements for sending chat messages versus uploading documents, including authentication protocols, error code handling, and request body structures, based on the company's technical documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that both chat messaging and document ingestion require bearer token authentication, specific JSON request bodies, and handle standard HTTP error codes like 401 and 429.",
+    "scenario": "An employee asks the internal knowledge assistant to retrieve and summarize sprint velocity trends from project documentation, followed by a request for specific data regarding backend engineering budget allocations as recorded in the latest financial meeting minutes.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides a summary of sprint velocity trends and confirms the backend engineering budget allocation, noting it is currently over budget at $52,000 against a planned $48,000.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant about the /health endpoint status and the authentication workflow for ingesting documents into the RAG knowledge base, with the assistant providing answers based strictly on the project's API documentation and security protocols.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the /health endpoint returns system status and that document ingestion requires bearer token authentication.",
+    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding project budget reports and sprint velocity metrics, requiring the assistant to provide factual answers grounded exclusively in the provided internal project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, providing specific budget status updates and sprint velocity metrics.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant about the LangGraph architecture, specifically inquiring why pinning LangChain v0.3.7 is required to resolve dependency conflicts mentioned in the Sprint 2 retrospective and how this impacts the Qdrant embedding pipeline deployment, with the assistant providing answers based strictly on internal project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that pinning LangChain to v0.3.7 resolves the version compatibility issues identified in Sprint 2 and ensures stability for the upcoming Qdrant embedding pipeline deployment.",
+    "scenario": "An employee asks an internal knowledge assistant to retrieve and summarize the current status of Alice Nguyen's security tasks, specifically requesting details on the completed JWT authentication implementation and the pending status of TOTP-based two-factor authentication and role-based access control as documented in the project tracker.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant confirms that User Authentication (REQ-001) is completed, while Two-Factor Authentication (REQ-010) and Role-Based Access Control (REQ-005) are currently in the 'To Do' status.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant for technical details regarding the Telegram human-in-the-loop prototype and Qdrant collection setup, and the assistant provides factual answers based strictly on the project documentation and sprint planning records.",
-    "expected_outcome": "The employee's factual questions regarding the Telegram human-in-the-loop prototype and Qdrant collection setup are answered correctly and concisely using the Sprint 3 planning documentation.",
+    "scenario": "An employee asks the internal knowledge assistant to compare the Dashboard Overview and Mobile Responsive Layout tasks based on project documentation, specifically requesting details on their priorities, assigned team members, and sprint timelines to understand the current development schedule.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that both Dashboard Overview (REQ-003) and Mobile Responsive Layout (REQ-012) have a Medium priority and are assigned to Bob Tran, but they are scheduled for different sprints, with the former in Sprint 2 and the latter in Sprint 5.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant to retrieve information regarding Sprint 3 planning attendance and project timeline documents to determine if the scheduled October 20 standup and November 3 review meeting allow enough time to reach the 80% test coverage goal.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the Sprint 3 meeting schedule and the team's commitment to reaching 80% test coverage by the end of the sprint.",
+    "scenario": "An employee asks an internal knowledge assistant to retrieve and clarify the status of Alice Nguyen's high-priority security backlog items, specifically the API rate limiting implementation and the TOTP-based two-factor authentication rollout, based on project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant confirms that both the API Rate Limiting (REQ-008) and Two-Factor Authentication (REQ-010) are currently in the 'To Do' status.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant to compare the resolution status of high-severity bugs BUG-002 and BUG-004 based on project documentation, specifically inquiring about the progress of the duplicate notification issue relative to the Safari dashboard bug.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that BUG-002 is resolved while BUG-004 remains in progress.",
+    "scenario": "An employee asks the internal knowledge assistant about the current status of the Telegram H-I-T-L project, and the assistant provides a factual response based on project documentation, confirming the design phase status, the Sprint 3 implementation timeline, and its alignment with the Q4 2025 roadmap including the RAG pipeline and security audit requirements.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the Telegram H-I-T-L project design is complete with implementation starting in Sprint 3, as outlined in the Q4 2025 roadmap.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant to retrieve all 'Open' status tickets from the Jira API and subsequently requests a detailed explanation of the documented causes for the 2MB image upload buffer failure and the state-reset logic issues affecting pagination during asynchronous search filtering, based on internal technical documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, identifying the open tickets (BUG-007, BUG-005, BUG-006) and clarifying the technical causes for the image upload failure and pagination reset.",
+    "scenario": "An employee asks the internal knowledge assistant to identify the Q4 2025 roadmap milestones scheduled for November 2025, specifically requesting that the assistant cross-reference the project documentation to ensure the plan incorporates the mandatory security audit and load testing requirements.",
+    "expected_outcome": "The assistant confirms the November 2025 roadmap milestones, including the security audit and load testing, by referencing the Q4 2025 project documentation.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant to retrieve specific details from the Jira API regarding Alice Nguyen's ticket backlog, including the resolution timestamp for a password validation bug and the triage status of a session timeout issue, with the assistant providing answers based strictly on the retrieved project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the password validation bug (BUG-001) was resolved on 2025-10-03 and the session timeout issue (BUG-006) remains in an Open status.",
+    "scenario": "An employee asks the internal knowledge assistant for a summary of Q3 deliverables for the AI Customer Agent project, followed by specific questions regarding the 65% completion status of the LangGraph multi-agent orchestration and the readiness of the Telegram H-I-T-L implementation based on internal project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the status of the MVP chatbot, auth system, multi-agent orchestration, and Telegram H-I-T-L implementation.",
     "user_description": null
   },
   {
-    "scenario": "An employee queries the internal knowledge assistant regarding the AI Customer Agent project timeline, specifically asking for the current RAG pipeline status and the official production deadline as documented in the project requirements and meeting minutes.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the RAG pipeline is currently in progress and the production deployment deadline is December 31, 2025.",
+    "scenario": "An employee asks an internal knowledge assistant about the target response time reduction for the Chative.IO project, and the assistant provides the specific goal and technical milestone requirements based on the project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant confirms the project aims to reduce customer support response time by 60% and outlines the relevant project milestones.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of questions regarding the technical specifications and performance requirements for the upcoming December deployment, specifically inquiring about the implementation details of the BM25 fallback mechanism as documented in the project's API specifications and meeting minutes.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that the BM25 fallback is a mitigation strategy for vector database performance degradation, as outlined in the project charter's risk management section.",
+    "scenario": "An employee asks the internal knowledge assistant about the status of the multi-agent orchestration project and the RAG pipeline development based on internal project documentation, and the assistant provides factual answers grounded in the retrieved documents.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant confirms that both the multi-agent orchestration and the RAG pipeline development are currently in progress, with target completion dates of July 31, 2025, and August 31, 2025, respectively.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding the AI Customer Agent project, specifically requesting factual information from project documents about LLM API rate limit mitigation strategies and vector database performance optimization to understand the technical requirements for the December deployment.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that LLM API rate limits are mitigated via request queuing and caching, while vector database performance is managed through regular index optimization and BM25 fallback.",
+    "scenario": "An employee asks the internal knowledge assistant to identify project risks based on the provided API specifications and project requirements, and the assistant provides factual answers grounded strictly in the retrieved documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant identifies the project risks, including LLM API rate limits, vector DB performance, intern ramp-up time, scope creep, and third-party API deprecation, along with their respective mitigation strategies.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant for details regarding Alice Nguyen's security backlog, specifically requesting information on the priority and scheduling of REQ-010 2FA implementation versus REQ-008 API rate limiting based on project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that both REQ-010 (2FA) and REQ-008 (API Rate Limiting) are assigned to Alice Nguyen, with REQ-008 scheduled for Sprint 4 with High priority and REQ-010 scheduled for Sprint 5 with High priority.",
+    "scenario": "An engineer queries the internal knowledge assistant to retrieve a list of open bugs from the tracker, followed by a request to identify the specific team members assigned to BUG-005, BUG-006, and BUG-007 based on the project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides a list of all open bugs and identifies Bob Tran as the assignee for BUG-005 and BUG-007, and Alice Nguyen as the assignee for BUG-006.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of factual questions regarding the UI backlog, specifically requesting details from project documents about the Dashboard Overview performance constraints, D3.js complexity for Data Visualization Charts, and WCAG 2.1 compliance requirements for Mobile Responsive Layouts to understand their impact on Sprints 2 and 5.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that the Dashboard Overview requires a 2-second load time, Data Visualization Charts utilize D3.js for interactive responsive charts, and the Mobile Responsive Layout must meet WCAG 2.1 AA standards.",
+    "scenario": "An employee asks the internal knowledge assistant for a list of bugs assigned to Bob Tran, and upon receiving the list, the employee asks for clarification on the priority of BUG-007 versus BUG-005, prompting the assistant to provide details on their respective severity and impact based on the bug tracker documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant identifies the bugs assigned to Bob Tran and clarifies the severity levels of BUG-005 and BUG-007 to help the employee understand their relative priority.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant to compare the tasks assigned to Bob Tran and David Pham during Sprint 4, specifically requesting a breakdown of the priority and complexity levels for the Audit Log and Advanced Search features based on project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that David Pham is assigned to the Audit Log (Medium priority, 5 points) and Bob Tran is assigned to Advanced Search & Filter (Low priority, 5 points) for Sprint 4.",
+    "scenario": "An employee asks an internal knowledge assistant to retrieve specific data from the Jira API regarding the resolution timestamps and assigned engineers for critical authentication vulnerability patches, and the assistant provides the information based on the project's bug tracker and API documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that BUG-001 was resolved by Alice Nguyen on 2025-10-03.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant about the specific architecture of the AI Customer Agent as documented in the project README and API specifications, and the assistant provides factual answers based strictly on those internal documents.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the AI Customer Agent utilizes a multi-agent architecture with a LangGraph supervisor, FastAPI framework, and hybrid memory system.",
+    "scenario": "An employee asks the internal knowledge assistant for the current stock levels of 'The Band' T-shirts, the unit cost, and the shipping requirements as documented in the internal inventory management system, while also verifying if the quantities are sufficient to fulfill pending orders based on the provided project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides the current inventory levels for all variants of 'The Band' T-shirt, confirms the unit cost is $11.00, and clarifies that shipping is required for all physical items, enabling the employee to verify if stock is sufficient for pending orders.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant for the specific steps to configure the AI Customer Agent, and the assistant provides instructions based on the project README, detailing the required environment variables such as the Telegram bot token and database URIs that must be set in the .env file for system initialization.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides the necessary steps to configure the AI Customer Agent, including installing dependencies, setting up the .env file with required variables like database URIs and the Telegram bot token, and launching the system via Docker or local execution.",
+    "scenario": "An employee asks the internal knowledge assistant to retrieve and explain the specific Google Shopping labeling requirements and SEO metadata guidelines for the 'The Band' T-shirt as documented in the company's product marketing specifications and inventory management manuals.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The conversation clarifies that the 'The Band' T-shirt is categorized under Apparel & Accessories > Clothing > Shirts & Tops, with Google Shopping labels including 'Music Merch' and 'Top Seller', and provides the specific SEO title and description used for the product's online store listing.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant about the system's handling of low-confidence queries based on the technical documentation, and the assistant provides factual answers grounded in the project's API specifications and integration guidelines.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that the system uses a Telegram-based human-in-the-loop escalation process for low-confidence queries.",
+    "scenario": "An employee asks an internal knowledge assistant about the fulfillment constraints for 'The History of Rock Music' digital assets, specifically requesting details on the manual fulfillment service versus automated delivery protocols for PDF, ePub, and Kindle formats based on internal project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The conversation clarifies that the digital assets for 'The History of Rock Music' (PDF, Kindle, and Audio) are fulfilled via the 'music-man-fulfillment' service and do not require shipping, distinguishing them from the manual fulfillment process used for physical products.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks the internal knowledge assistant a series of follow-up questions regarding the technical specifications and architectural requirements for the LangGraph supervisor and Docling-Qdrant RAG pipeline integration, based on the company's internal project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying the current status of the multi-agent orchestration and the technical components of the RAG pipeline.",
+    "scenario": "An employee asks the internal knowledge assistant for the local setup commands for the multi-agent system, and the assistant provides the specific steps including the configuration of MONGODB_URI and QDRANT_HOST environment variables based on the project's technical documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides the local setup commands and confirms the required environment variable configurations for MongoDB and Qdrant.",
     "user_description": null
   },
   {
-    "scenario": "A developer asks an internal knowledge assistant about the LangGraph Supervisor's architecture, the RAG pipeline's Qdrant integration, and the Q4 roadmap for Telegram H-I-T-L deployment, with the assistant providing factual answers based strictly on internal project documentation.",
-    "expected_outcome": "The employee's factual questions regarding the LangGraph Supervisor architecture, RAG pipeline Qdrant integration, and Q4 Telegram H-I-T-L roadmap are all answered correctly and concisely from the project documentation.",
+    "scenario": "An employee asks an internal knowledge assistant a series of follow-up questions regarding project documentation, and the assistant provides factual answers grounded exclusively in the retrieved internal project files.",
+    "expected_outcome": "The employee's factual questions regarding the project's architecture, tech stack, and setup procedures are all answered correctly and concisely from the documentation.",
     "user_description": null
   },
   {
-    "scenario": "An employee asks an internal knowledge assistant a series of questions regarding the Q4 roadmap, specifically inquiring about the dependencies between multi-agent routing and the RAG pipeline, as well as the timeline for integration testing and security audits based on internal project documentation.",
-    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that multi-agent routing and the RAG pipeline are scheduled for October and November respectively, with integration testing and security audits slated for December 2025.",
+    "scenario": "An employee asks an internal knowledge assistant for technical details regarding the human-in-the-loop Telegram escalation and memory architecture, specifically requesting how to configure these features to align with the project's existing Redis and MongoDB environment variables as documented in the internal system specifications.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that the system uses a Telegram bot for human-in-the-loop escalation and explains that the memory architecture integrates Redis for short-term storage and MongoDB for long-term storage, providing the specific environment variable keys required for configuration.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant about the storage architecture for the LangGraph project, and the assistant provides factual details based on the project's API specifications and technical documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the use of Redis for short-term memory, MongoDB for long-term storage, and Qdrant for semantic search.",
+    "user_description": null
+  },
+  {
+    "scenario": "A security engineer asks an internal knowledge assistant a series of questions regarding API authentication, rate limits, and secret management, requiring the assistant to provide answers grounded strictly in the company's internal API specifications and security documentation.",
+    "expected_outcome": "The employee's factual questions regarding API authentication, rate limits, and secret management are all answered correctly and concisely based on the technical architecture documentation.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant to explain the project's data storage architecture, specifically requesting the API endpoints and MongoDB schema structure for message persistence as defined in the internal technical documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides the API endpoint list and the MongoDB schema structure for message persistence, confirming the system's data storage architecture.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant to compare the successes of Sprint 2, such as the MongoDB-Redis storage pattern, against the LangChain compatibility failures, and inquires how Binh Nguyen’s assigned action items, including pinning LangChain versions and setting up Qdrant, address these technical bottlenecks based on project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant clarifies that Sprint 2 successes included the MongoDB-Redis storage pattern and JWT authentication, while LangChain compatibility issues caused rework; it further explains that Binh's action items, such as pinning LangChain to v0.3.7 and setting up the Qdrant collection, directly address these technical bottlenecks by stabilizing the environment and advancing the RAG pipeline.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant to clarify the technical requirements and complexity definitions for the RAG pipeline and Supervisor Agent routing logic based on the project documentation, and the assistant provides factual answers derived strictly from the internal API specifications and project README files.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, clarifying that the Supervisor Agent routing logic (US-031) and the FAQ sub-agent with RAG (US-032) are both assigned to Binh with 8 story points each.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant for the Sprint 3 meeting schedule, the identity of the meeting minutes' author and approver, and how these details relate to the team's urgent goal of achieving 80% test coverage by the end of the sprint, with the assistant providing answers based strictly on retrieved project documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming the Sprint 3 meeting dates, the meeting minutes' author and approver, and the team's commitment to reaching 80% test coverage as a specific Sprint 3 goal.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant for the full identity of user booker12 based on project documentation, followed by a request for the specific numeric identifier linked to Rachel Booker to verify her clearance level in the personnel registry.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming that user booker12 is Rachel Booker with the numeric identifier 9012.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee asks the internal knowledge assistant to retrieve a list of system usernames from the project documentation, followed by a request for the specific identity associated with user ID 2070 based on the provided access logs and security requirements.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns. The assistant provides the list of system usernames and identifies Laura Grey as the user associated with ID 2070.",
+    "user_description": null
+  },
+  {
+    "scenario": "An employee, Rachel Booker, engages in a multi-turn Q&A session with an internal knowledge assistant to retrieve specific project data, starting by asking for Mary Jenkins' identifier and following up by requesting the username associated with that ID to verify access permissions based on internal documentation.",
+    "expected_outcome": "The employee's factual questions are all answered correctly and concisely from the documents across the turns, confirming Mary Jenkins' identifier is 9346 and her associated username is jenkins46.",
     "user_description": null
   }
 ]

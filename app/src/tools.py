@@ -1,4 +1,4 @@
-"""Agent tools: Task 1 = retrieve internal knowledge, Task 2 = personalize via rules."""
+"""Agent tools: retrieve internal knowledge, query knowledge graph, personalize via rules."""
 import json
 
 from langchain_core.tools import tool
@@ -8,8 +8,7 @@ from . import config, stores, embeddings, graph
 
 
 def _filter_chunks(query: str, hits: list[dict], runnable_config: RunnableConfig | None = None) -> list[dict]:
-    """B2: LLM drops chunk text irrelevant to the query (cuts in-chunk noise that
-    top_k/chunk_size can't). Falls back to unfiltered hits on any failure."""
+    """LLM drops chunk text irrelevant to the query. Falls back to unfiltered hits on any failure."""
     chunks = "\n\n".join(f"[{h['source']}]\n{h['text']}" for h in hits)
     prompt = config.load_prompt("filter_chunks.xml").replace("{query}", query).replace("{chunks}", chunks)
     try:
@@ -20,16 +19,13 @@ def _filter_chunks(query: str, hits: list[dict], runnable_config: RunnableConfig
         kept = [k for k in json.loads(raw)["kept"] if k.get("text")]
         for k in kept:
             k.setdefault("source", "?")
-        return kept or hits  # empty filter result -> keep original, don't starve the answer
+        return kept or hits
     except Exception:
         return hits
 
 
 def _rerank(query: str, hits: list[dict], top_k: int) -> list[dict]:
-    """Cross-encoder rerank: cosine can't tell 'mentions JWT' from 'states the
-    token TTL', so the answer chunk sinks below keyword-dense noise. flashrank
-    scores (query, chunk) jointly and reorders. Falls back to cosine order on any
-    failure. ponytail: TinyBERT ONNX, no torch."""
+    """Cross-encoder rerank. Falls back to cosine order on any failure."""
     try:
         from flashrank import RerankRequest
         passages = [{"id": i, "text": h["text"], "meta": h} for i, h in enumerate(hits)]
@@ -40,8 +36,7 @@ def _rerank(query: str, hits: list[dict], top_k: int) -> list[dict]:
 
 
 def retrieve(query: str, k: int | None = None, runnable_config: RunnableConfig | None = None) -> list[dict]:
-    """Core retrieval used by BOTH the agent tool and eval. One path, so tuning
-    config.TOP_K changes what eval measures too. Returns chunk payloads (text+source).
+    """Core retrieval used by BOTH the agent tool and eval.
     Pipeline: cosine pool -> cross-encoder rerank -> top_k -> LLM filter."""
     top_k = k or config.TOP_K
     pool = config.RERANK_POOL if config.RERANK else top_k
@@ -54,8 +49,7 @@ def retrieve(query: str, k: int | None = None, runnable_config: RunnableConfig |
 
 @tool
 def retrieve_docs(query: str, runnable_config: RunnableConfig) -> str:
-    """Search internal knowledge base for info relevant to the query.
-    Returns matching passages with their source. Use for any factual question."""
+    """Search the internal knowledge base for passages relevant to the query."""
     hits = retrieve(query, runnable_config=runnable_config)
     if not hits:
         return "No relevant documents found."
@@ -73,9 +67,7 @@ def save_rule(rule: str) -> str:
 
 @tool
 def graph_query(entity: str) -> str:
-    """Look up how an entity relates to others in the knowledge graph.
-    Use for questions about connections, ownership, dependencies, or structure
-    (e.g. 'what does the Backend Team own?', 'what depends on FastAPI?')."""
+    """Look up an entity in the knowledge graph and return its relationships."""
     return graph.query(entity, org_id=config.ORG_ID)
 
 

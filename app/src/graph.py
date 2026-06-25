@@ -51,6 +51,24 @@ def build(org_id: str | None = None) -> int:
     return total
 
 
+def ingest_doc_graph(source_path: str, org_id: str | None = None) -> int:
+    """Extract triples from a single Mongo doc by source path and write them to Neo4j. Returns triple count."""
+    org_id = org_id or config.ORG_ID
+    doc = config.db()["docs"].find_one({"source": source_path, "org_id": org_id})
+    if not doc or not doc.get("markdown"):
+        return 0
+    extracted = _extract(doc["markdown"])
+    if not extracted:
+        return 0
+    triples = 0
+    with config.neo4j().session() as s:
+        for t in extracted:
+            if t.get("subject") and t.get("relation") and t.get("object"):
+                s.execute_write(_write, t["subject"], t["relation"], t["object"], org_id)
+                triples += 1
+    return triples
+
+
 def query(entity: str, org_id: str | None = None, limit: int = 25) -> str:
     """Find relationships touching entities whose name matches the query term."""
     org_id = org_id or config.ORG_ID

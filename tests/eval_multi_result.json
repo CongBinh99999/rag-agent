@@ -10,15 +10,15 @@
       },
       {
         "name": "Turn Faithfulness",
-        "score": 0.9285714285714286,
-        "passed": true,
-        "reason": "The score is 0.9285714285714286 because the assistant's output consistently aligned with the provided retrieval context, and no contradictions or unsupported claims were identified across the evaluated interactions."
-      },
-      {
-        "name": "Knowledge Retention",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions, hallucinations, or unsupported claims identified across all evaluated segments."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.5507936507936507,
+        "passed": true,
+        "reason": "The score is 0.55 because the retrieval system consistently struggles to prioritize relevant information regarding login credentials and bearerAuth schemes, frequently placing irrelevant nodes related to document ingestion, chat history, and rate limiting in the top positions. While the system successfully retrieves the necessary information, the precision is significantly degraded by the presence of these irrelevant nodes at higher ranks, which prevents a more optimal ranking performance."
       }
     ]
   },
@@ -33,15 +33,15 @@
       },
       {
         "name": "Turn Faithfulness",
-        "score": 0.9523809523809524,
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.9523809523809524 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
       },
       {
-        "name": "Knowledge Retention",
-        "score": 0.6666666666666666,
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
         "passed": true,
-        "reason": "The score is 0.67 because the LLM hallucinated specific budget figures (48,000 and 52,000) that were not established in the previous knowledge."
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes, ensuring that all necessary implementation details, message constraints, and language enums were perfectly ordered to support the user's request."
       }
     ]
   },
@@ -56,15 +56,15 @@
       },
       {
         "name": "Turn Faithfulness",
-        "score": 1.0,
+        "score": 0.9583333333333333,
         "passed": true,
-        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+        "reason": "The score is 0.9583333333333333 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across the evaluated turns."
       },
       {
-        "name": "Knowledge Retention",
-        "score": 0.0,
-        "passed": false,
-        "reason": "The score is 0.00 because the LLM failed to recall 'reporting requirements' despite it being explicitly established as part of the requested information in the previous knowledge."
+        "name": "Turn Contextual Precision",
+        "score": 0.9575396825396825,
+        "passed": true,
+        "reason": "The score is 0.9575396825396825 because the retrieval system consistently prioritizes highly relevant nodes containing essential information about health checks and document ingestion, resulting in a high overall precision despite a minor issue where a redundant, irrelevant node was occasionally ranked ahead of some relevant content."
       }
     ]
   },
@@ -84,10 +84,10 @@
         "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
       },
       {
-        "name": "Knowledge Retention",
-        "score": 1.0,
-        "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "name": "Turn Contextual Precision",
+        "score": 0.0,
+        "passed": false,
+        "reason": "The score is 0.0 because the retrieval process failed to identify any relevant information, as all retrieved nodes were entirely unrelated to the user's specific request regarding API specifications, conversation history, or authentication details."
       }
     ]
   },
@@ -107,10 +107,10 @@
         "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
       },
       {
-        "name": "Knowledge Retention",
+        "name": "Turn Contextual Precision",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the retrieval process consistently prioritized highly relevant nodes at the top of the ranking, ensuring that critical information regarding dynamic tool filtering, middleware hooks, and implementation criteria was presented first, which demonstrates an optimal and effective retrieval structure."
       }
     ]
   },
@@ -125,15 +125,15 @@
       },
       {
         "name": "Turn Faithfulness",
-        "score": 0.9,
+        "score": 0.6666666666666666,
         "passed": true,
-        "reason": "The score is 0.9 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across the evaluated interactions."
+        "reason": "The score is 0.6666666666666666 because the model's output was found to be entirely consistent with the provided retrieval context, with no contradictions identified during the evaluation process."
       },
       {
-        "name": "Knowledge Retention",
+        "name": "Turn Contextual Precision",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes at the top of the ranking, ensuring that all provided information was accurate and perfectly ordered to support the implementation of middleware for exception handling."
       }
     ]
   },
@@ -148,15 +148,15 @@
       },
       {
         "name": "Turn Faithfulness",
-        "score": 0.8055555555555555,
-        "passed": true,
-        "reason": "The score is 0.8055555555555555 because the model's responses were largely faithful to the provided context, with no direct contradictions identified, although there was a minor limitation regarding the specificity of the access token duration across all endpoints."
-      },
-      {
-        "name": "Knowledge Retention",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized the most relevant information, specifically the requested backend engineering budget figures, at the very top of the context, demonstrating perfect ranking precision."
       }
     ]
   },
@@ -173,13 +173,13 @@
         "name": "Turn Faithfulness",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
       },
       {
-        "name": "Knowledge Retention",
+        "name": "Turn Contextual Precision",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes that perfectly aligned with the user's specific queries regarding sprint velocity trends and backend budget allocations, ensuring an optimal ranking of information."
       }
     ]
   },
@@ -199,10 +199,631 @@
         "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
       },
       {
-        "name": "Knowledge Retention",
+        "name": "Turn Contextual Precision",
         "score": 1.0,
         "passed": true,
-        "reason": "The score is 1.00 because the model demonstrated perfect recall of all previously established information with no instances of forgetfulness or attrition."
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes containing specific sprint velocity and budget data, ensuring that the most pertinent information was ranked at the top of the context for every interaction."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_9",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes at the top of the context, ensuring that all information provided was accurate and directly addressed the user's security task queries."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_10",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes, ensuring that the most accurate and useful information was presented at the top of the context for every interaction."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_11",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes at the top of the ranking for all tasks, ensuring that the information provided for Alice Nguyen's status updates was both accurate and perfectly ordered."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_12",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.75,
+        "passed": true,
+        "reason": "The score is 0.75 because the retrieval system successfully prioritized the primary relevant node regarding project status at the top of the list, although it failed to maintain high precision for subsequent relevant information. Specifically, a secondary relevant node was incorrectly ranked behind several irrelevant nodes containing only metadata, version labels, and granular task details, which indicates a need for better filtering of non-essential content to improve overall ranking efficiency."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_13",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized the most relevant information, placing the node that directly addressed the user's query about security audit and load testing milestones at the top while correctly ranking irrelevant nodes lower."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_14",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.8101851851851851,
+        "passed": true,
+        "reason": "The score is 0.8101851851851851 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.9114050558495003,
+        "passed": true,
+        "reason": "The score is 0.91 because the retrieval system consistently prioritizes highly relevant information regarding LangGraph orchestration and Telegram H-I-T-L in the top-ranked nodes, leading to a successful overall performance. While the ranking is generally effective, the score is slightly penalized by the occasional inclusion of irrelevant nodes, such as Q4 roadmap details, which are positioned before some relevant supporting information, and the presence of a few less informative nodes at the end of the retrieval set."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_15",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.84375,
+        "passed": true,
+        "reason": "The score is 0.84375 because the model's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across the evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.9553571428571428,
+        "passed": true,
+        "reason": "The score is 0.9553571428571428 because the retrieval system consistently prioritizes highly relevant information regarding the target goal of reducing customer support response time, with most interactions demonstrating perfect or near-perfect ranking of critical nodes. While there were minor instances where irrelevant nodes concerning agent functionality were interspersed among relevant technical milestones, the overall retrieval context remained effective and well-structured, ensuring that the most pertinent data was consistently positioned to support the user's query."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_16",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.9629629629629629,
+        "passed": true,
+        "reason": "The score is 0.9629629629629629 because the model's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.5601851851851851,
+        "passed": true,
+        "reason": "The score is 0.56 because although the retrieval system successfully identifies relevant information, the overall precision is significantly hampered by suboptimal ranking. Across all interactions, irrelevant or redundant nodes consistently occupy higher ranks than the pertinent documents, which often contain the specific status and timeline details requested by the user. The presence of duplicate and non-informative nodes at the top of the retrieval list forces relevant content into lower positions, indicating a consistent failure to prioritize high-quality, contextually accurate information over noise."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_17",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.9720279720279721,
+        "passed": true,
+        "reason": "The score is 0.9720279720279721 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.7734788359788359,
+        "passed": true,
+        "reason": "The score is 0.7734788359788359 because the retrieval system demonstrates a generally effective ability to prioritize relevant information, as evidenced by the perfect ranking in the first interaction. However, the overall precision is tempered by instances where irrelevant nodes, such as status updates and API schemas, are interspersed among or ranked ahead of critical project data, which disrupts the optimal ordering of information in subsequent interactions."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_18",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes, ensuring that all necessary information regarding open bugs was accurately ranked at the top of the context to fully satisfy the user's request."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_19",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.94375,
+        "passed": true,
+        "reason": "The score is 0.94375 because the retrieval system consistently prioritizes highly relevant information, successfully identifying specific data points in most instances, although a minor precision drop occurred in one interaction where an irrelevant node was included among otherwise relevant results."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_20",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently ranked the most relevant nodes containing critical resolution timestamps and engineer assignments at the very top of the context, demonstrating perfect precision in information delivery."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_21",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.9,
+        "passed": true,
+        "reason": "The score is 0.9 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.9633682237827405,
+        "passed": true,
+        "reason": "The score is 0.9633682237827405 because the retrieval system consistently prioritizes highly relevant nodes containing specific inventory and cost data, resulting in a high overall precision. While the system maintains strong performance, the score is slightly penalized by the occasional inclusion of irrelevant nodes related to project status and architecture positioned before some relevant data points, though these instances are infrequent enough to maintain a successful overall ranking quality."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_22",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.8873626373626373,
+        "passed": true,
+        "reason": "The score is 0.8873626373626373 because the model's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across the evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.8257575757575757,
+        "passed": true,
+        "reason": "The score is 0.8257575757575757 because the retrieval system generally performs well by prioritizing highly relevant nodes containing specific product metadata, SEO titles, and descriptions at the top of the ranking, although precision is occasionally impacted by the inclusion of several irrelevant nodes containing unrelated MPN data before all relevant information is fully presented."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_23",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant nodes at the top of the context, ensuring that all information provided directly addressed the user's specific inquiries regarding fulfillment and format protocols for the requested topic."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_24",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently ranked the most relevant information at the top of the context, providing the user with essential setup commands and environment variables immediately, which demonstrates perfect precision in the retrieval process."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_25",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.8333333333333334,
+        "passed": true,
+        "reason": "The score is 0.8333333333333334 because the model's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified during the evaluation."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.0,
+        "passed": false,
+        "reason": "The score is 0.0 because the retrieval process failed to identify any relevant information, as all retrieved nodes were entirely irrelevant to the user's request, leading to a complete lack of precision in the ranking."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_26",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.9484126984126983,
+        "passed": true,
+        "reason": "The score is 0.9484126984126983 because the retrieval system consistently prioritizes highly relevant technical documentation regarding Telegram escalation and database architecture, though the overall precision is slightly diminished by the inclusion of a less relevant node concerning API endpoints positioned before several pertinent configuration details."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_27",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.9333333333333332,
+        "passed": true,
+        "reason": "The score is 0.9333333333333332 because the model's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.7763227513227512,
+        "passed": true,
+        "reason": "The score is 0.776 because the retrieval system consistently places relevant nodes regarding MongoDB architecture at the top of the ranking, which ensures the core information is prioritized. However, the overall precision is tempered by the frequent inclusion of irrelevant nodes, particularly those discussing PostgresStore, InMemoryStore, and unused schema details, which appear interspersed among the relevant content and lower the total ranking efficiency."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_28",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.878968253968254,
+        "passed": true,
+        "reason": "The score is 0.878968253968254 because the retrieval system generally maintains high precision by prioritizing relevant policy documentation, although the overall performance is slightly diminished by the occasional inclusion of irrelevant project management tickets within the top-ranked results."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_29",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized highly relevant information, successfully placing the most critical API endpoints and comprehensive MongoDB schema details at the top of the ranking for every interaction."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_30",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.8333333333333333,
+        "passed": true,
+        "reason": "The score is 0.8333333333333333 because the retrieval system successfully prioritized highly relevant information regarding the dual-storage pattern and version compatibility at the beginning of the context, although the overall precision was slightly diminished by the inclusion of irrelevant nodes concerning technology stack versions and unrelated task details positioned ahead of some pertinent information."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_31",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 0.9696969696969697,
+        "passed": true,
+        "reason": "The score is 0.9696969696969697 because the assistant's output consistently aligned with the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated segments."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 0.7345578803912137,
+        "passed": true,
+        "reason": "The score is 0.7345578803912137 because while the retrieval system demonstrates high precision in some instances by placing critical information at the top of the context, it frequently suffers from the inclusion of irrelevant nodes interspersed between relevant ones. Although the system successfully identifies key details like confidence thresholds and task requirements, the overall precision is diluted by the presence of non-contributory content at intermediate ranks, which disrupts the flow of information and necessitates a more refined ranking strategy to ensure consistently high-quality retrieval."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_32",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently ranked all relevant nodes at the top of the context, ensuring that the information regarding meeting schedules, authorship, and test coverage was perfectly aligned with the user's requirements."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_33",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently ranks the most relevant information at the top of the context, ensuring that the user's query is addressed immediately and accurately with the necessary data."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_34",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently prioritized the most relevant information at the top of the context, ensuring that the first node provided a comprehensive and accurate answer to the user's request without the interference of irrelevant data."
+      }
+    ]
+  },
+  {
+    "id": "conversational_test_case_35",
+    "metrics": [
+      {
+        "name": "Turn Relevancy",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because there are no irrelevancies identified in the conversation, indicating that all assistant messages directly addressed the user's inquiries."
+      },
+      {
+        "name": "Turn Faithfulness",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the assistant's output was found to be entirely faithful to the provided retrieval context, with no contradictions or unsupported claims identified across all evaluated interactions."
+      },
+      {
+        "name": "Turn Contextual Precision",
+        "score": 1.0,
+        "passed": true,
+        "reason": "The score is 1.0 because the retrieval system consistently ranked the most relevant information at the very top of the context for every interaction, while correctly identifying and positioning all irrelevant nodes after the pertinent data."
       }
     ]
   }
