@@ -25,12 +25,27 @@ def _filter_chunks(query: str, hits: list[dict], runnable_config: RunnableConfig
 
 
 def _rerank(query: str, hits: list[dict], top_k: int) -> list[dict]:
-    """Cross-encoder rerank. Falls back to cosine order on any failure."""
+    """Gemini rerank. Falls back to cosine order on any failure."""
+    chunks = "\n\n".join(f"{i}. [{h['source']}]\n{h['text']}" for i, h in enumerate(hits))
+    prompt = (
+        "Bạn là reranker cho hệ thống RAG tiếng Việt.\n"
+        "Chỉ xếp hạng các đoạn trực tiếp giúp trả lời query.\n"
+        "Trả về JSON duy nhất dạng {\"ranked_ids\":[2,0,1]}. Không giải thích.\n\n"
+        f"Query:\n{query}\n\nCác đoạn tài liệu:\n{chunks}"
+    )
     try:
-        from flashrank import RerankRequest
-        passages = [{"id": i, "text": h["text"], "meta": h} for i, h in enumerate(hits)]
-        ranked = config.ranker().rerank(RerankRequest(query=query, passages=passages))
-        return [r["meta"] for r in ranked[:top_k]]
+        raw = config.llm().invoke(prompt).content
+        if isinstance(raw, list):
+            raw = "".join(b.get("text", "") for b in raw if isinstance(b, dict))
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        ranked_ids = json.loads(raw)["ranked_ids"]
+        seen = set()
+        reranked = []
+        for i in ranked_ids:
+            if isinstance(i, int) and 0 <= i < len(hits) and i not in seen:
+                seen.add(i)
+                reranked.append(hits[i])
+        return (reranked + [h for i, h in enumerate(hits) if i not in seen])[:top_k]
     except Exception:
         return hits[:top_k]
 

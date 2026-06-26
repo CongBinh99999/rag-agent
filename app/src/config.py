@@ -26,15 +26,14 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password123")
 ORG_ID = os.getenv("ORG_ID", "default")
 COLLECTION = os.getenv("QDRANT_COLLECTION", "knowledge")
 # Retrieval knobs (one place to tune for eval Plan A). int() so .env overrides work.
-TOP_K = int(os.getenv("TOP_K", "4"))
+TOP_K = int(os.getenv("TOP_K", "10"))
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "400"))
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "50"))
 # B2: LLM filter sub-agent after retrieval (drops chunks irrelevant to the query).
 FILTER = os.getenv("FILTER", "1") == "1"
-# Rerank: fetch RERANK_POOL hits by cosine, cross-encoder re-ranks, cut to TOP_K.
-# Fixes the "answer chunk buried at rank 3" case bi-encoder cosine can't see.
-RERANK = os.getenv("RERANK", "1") == "1"
-RERANK_POOL = int(os.getenv("RERANK_POOL", "12"))
+# Rerank: fetch RERANK_POOL hits by cosine, Gemini re-ranks, cut to TOP_K.
+RERANK = os.getenv("RERANK", "0") == "1"
+RERANK_POOL = int(os.getenv("RERANK_POOL", "20"))
 
 
 @lru_cache
@@ -67,12 +66,6 @@ def llm() -> ChatGoogleGenerativeAI:
 def embeddings() -> GoogleGenerativeAIEmbeddings:
     return GoogleGenerativeAIEmbeddings(model=EMBED_MODEL, google_api_key=GOOGLE_API_KEY)
 
-
-@lru_cache
-def ranker():
-    # flashrank: ONNX cross-encoder, no torch. Default model ~4MB, downloaded once.
-    from flashrank import Ranker
-    return Ranker()
 
 
 def db():
@@ -108,3 +101,5 @@ def ping() -> dict:
 if __name__ == "__main__":
     for k, v in ping().items():
         print(f"{k:8} {v}")
+
+

@@ -37,6 +37,27 @@ def _write(tx, src: str, rel: str, dst: str, org_id: str) -> None:
     )
 
 
+def _expand_entity(entity: str) -> list[str]:
+    prompt = (
+        "Expand this graph entity search term for a bilingual Vietnamese/English knowledge graph.\n"
+        "Return JSON only: {\"queries\":[\"original\",\"translated alias\",\"root/adjective/broad term\"]}.\n"
+        "Include both Vietnamese and English variants when useful, and include broad adjective/root terms like Roman for Rome/La Mã. Keep at most 5 short entity names. No explanations.\n\n"
+        f"Entity: {entity}"
+    )
+    try:
+        raw = config.llm().invoke(prompt).content
+        if isinstance(raw, list):
+            raw = "".join(b.get("text", "") for b in raw if isinstance(b, dict))
+        raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        queries = [entity]
+        for q in json.loads(raw).get("queries", []):
+            if isinstance(q, str) and q.strip() and q.strip() not in queries:
+                queries.append(q.strip())
+        return queries[:5]
+    except Exception:
+        return [entity]
+
+
 def build(org_id: str | None = None) -> int:
     """Extract triples from all Mongo docs into Neo4j. Returns triple count."""
     org_id = org_id or config.ORG_ID
@@ -72,13 +93,14 @@ def ingest_doc_graph(source_path: str, org_id: str | None = None) -> int:
 def query(entity: str, org_id: str | None = None, limit: int = 25) -> str:
     """Find relationships touching entities whose name matches the query term."""
     org_id = org_id or config.ORG_ID
+    queries = _expand_entity(entity)
     cypher = (
         "MATCH (a:Entity {org_id:$org})-[r:REL]->(b:Entity) "
-        "WHERE toLower(a.name) CONTAINS toLower($q) OR toLower(b.name) CONTAINS toLower($q) "
+        "WHERE ANY(q IN $queries WHERE toLower(a.name) CONTAINS toLower(q) OR toLower(b.name) CONTAINS toLower(q)) "
         "RETURN a.name AS s, r.type AS rel, b.name AS o LIMIT $lim"
     )
     with config.neo4j().session() as s:
-        rows = s.run(cypher, q=entity, org=org_id, lim=limit).data()
+        rows = s.run(cypher, queries=queries, org=org_id, lim=limit).data()
     if not rows:
         return "No graph relationships found for that term."
     return "\n".join(f"({r['s']}) -{r['rel']}-> ({r['o']})" for r in rows)
