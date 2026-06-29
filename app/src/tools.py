@@ -63,7 +63,10 @@ def retrieve(query: str, k: int | None = None, runnable_config: RunnableConfig |
 
 @tool
 def retrieve_docs(query: str, runnable_config: RunnableConfig) -> str:
-    """Search the internal knowledge base for passages relevant to the query."""
+    """Search internal document passages that are semantically relevant to the user's question.
+
+    Use this for questions that require facts from the document knowledge base. The query should be the user's information need, including important names, IDs, or keywords. Returns matching passages grouped with source filenames; it does not query graph relationships.
+    """
     hits = retrieve(query, runnable_config=runnable_config)
     if not hits:
         return "No relevant documents found."
@@ -71,18 +74,22 @@ def retrieve_docs(query: str, runnable_config: RunnableConfig) -> str:
 
 
 @tool
-def save_rule(rule: str) -> str:
-    """Remember a user preference or feedback rule for future conversations.
-    Call this when the user gives feedback on how you should behave
-    (e.g. 'always answer in Vietnamese', 'be more concise')."""
+def submit_user_preference(rule: str) -> str:
+    """Submit a user tone, language, or formatting preference for human review.
+
+    Use this only when the user explicitly gives behavioral feedback about how responses should be written. The rule parameter should contain only the preference text, not unrelated question content or policy changes. This tool stages the preference for review and does not make the rule active immediately.
+    """
     stores.add_rule(rule, org_id=config.ORG_ID)
-    return f"Saved rule: {rule}"
+    return f"Submitted preference for review: {rule}"
 
 
 @tool
 def graph_query(entity: str) -> str:
-    """Look up an entity in the knowledge graph and return its relationships."""
+    """Look up relationships around a named entity in the knowledge graph.
+
+    Use this for people, projects, requirements, bugs, document IDs, or other entities mentioned in the user's question. The entity parameter should be the most specific name or identifier available. Returns graph relationships near the entity; it does not return full document passages.
+    """
     return graph.query(entity, org_id=config.ORG_ID)
 
 
-TOOLS = [retrieve_docs, save_rule, graph_query]
+TOOLS = [retrieve_docs, submit_user_preference, graph_query]

@@ -2,9 +2,9 @@
 
 Structure:
   agent
-   ├── retrieve_docs   [Qdrant vector search]
-   ├── graph_query     [Neo4j GraphRAG]
-   └── save_rule       [personalization]
+   ├── retrieve_docs              [Qdrant vector search]
+   ├── graph_query                [Neo4j GraphRAG]
+   └── submit_user_preference     [personalization review]
 
 System prompt = agent_system.xml + org rules from Mongo.
 History persisted in Redis, keyed by session/thread id.

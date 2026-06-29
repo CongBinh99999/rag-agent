@@ -1,6 +1,6 @@
 """Task 2 (personalization) self-check: the feedback loop end-to-end.
 
-  1. feedback -> agent calls save_rule -> rule lands in Mongo (per org)
+  1. feedback -> agent calls submit_user_preference -> rule lands in Mongo (per org)
   2. saved rule is injected into a fresh agent's system prompt and obeyed
   3. rules are isolated per org_id (org A can't see org B's rule)
 
@@ -30,7 +30,7 @@ def _set_org(org_id: str):
 def main():
     _clean()
     try:
-        # 1. feedback -> save_rule fires -> rule persisted for ORG_A
+        # 1. feedback -> submit_user_preference fires -> rule persisted for ORG_A
         _set_org(ORG_A)
         agent = build_agent()
         run(agent, "rules-1",
@@ -39,7 +39,7 @@ def main():
         rules = stores.get_rules(ORG_A)
         assert rules, f"agent did not save any rule for {ORG_A}"
         assert any("<<DONE>>" in r for r in rules), f"marker rule not saved: {rules}"
-        print(f"[1] save_rule fired, rules={rules}")
+        print(f"[1] submit_user_preference fired, rules={rules}")
 
         # 2. fresh agent loads the rule into its system prompt and obeys it
         agent2 = build_agent()
