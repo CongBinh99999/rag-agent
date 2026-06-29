@@ -41,7 +41,8 @@ def ingest_directory(directory_path):
     path = Path(directory_path)
     print(f"\nIngesting directory: {path}")
     files = []
-    for ext in ("*.csv", "*.xlsx", "*.pdf", "*.docx", "*.pptx", "*.md", "*.json"):
+    for ext in ("*.csv", "*.xlsx", "*.pdf", "*.docx", "*.pptx", "*.md", "*.json",
+                "*.png", "*.jpg", "*.jpeg", "*.svg", "*.webp", "*.gif"):
         files.extend(path.glob(ext))
     
     # Sort for consistent ordering
@@ -55,15 +56,7 @@ def ingest_directory(directory_path):
             n = ingest(str(f.resolve()))
             
             # Extract triples from the document we just stored in Mongo
-            doc = config.db()["docs"].find_one({"source": str(f.resolve()), "org_id": config.ORG_ID})
-            triples = 0
-            if doc and doc.get("markdown"):
-                with config.neo4j().session() as s:
-                    extracted = graph._extract(doc["markdown"])
-                    for t in extracted:
-                        if t.get("subject") and t.get("relation") and t.get("object"):
-                            s.execute_write(graph._write, t["subject"], t["relation"], t["object"], config.ORG_ID)
-                            triples += 1
+            triples = graph.ingest_doc_graph(str(f.resolve()))
                             
             print(f"  -> Indexed {n} chunks, {triples} triples")
         except Exception as e:

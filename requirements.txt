@@ -9,3 +9,7 @@ redis
 markitdown[all]
 chainlit
 deepeval
+Pillow>=10.0.0
+cairosvg>=2.7.1
+markitdown-ocr>=0.0.1
+

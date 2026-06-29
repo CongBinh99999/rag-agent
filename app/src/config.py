@@ -1,7 +1,10 @@
 """Central config: env + clients + prompt loader. One place only."""
 import os
+import sys
+import contextvars
 from pathlib import Path
 from functools import lru_cache
+from types import ModuleType
 
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -23,7 +26,7 @@ REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
 NEO4J_URL = os.getenv("NEO4J_URL", "bolt://localhost:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password123")
-ORG_ID = os.getenv("ORG_ID", "default")
+_ORG_ID = contextvars.ContextVar("org_id", default=os.getenv("ORG_ID", "default"))
 COLLECTION = os.getenv("QDRANT_COLLECTION", "knowledge")
 # Retrieval knobs (one place to tune for eval Plan A). int() so .env overrides work.
 TOP_K = int(os.getenv("TOP_K", "10"))
@@ -101,5 +104,16 @@ def ping() -> dict:
 if __name__ == "__main__":
     for k, v in ping().items():
         print(f"{k:8} {v}")
+
+
+class ConfigModule(ModuleType):
+    @property
+    def ORG_ID(self) -> str:
+        return _ORG_ID.get()
+    @ORG_ID.setter
+    def ORG_ID(self, value: str):
+        _ORG_ID.set(value)
+
+sys.modules[__name__].__class__ = ConfigModule
 
 

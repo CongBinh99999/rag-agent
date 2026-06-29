@@ -37,10 +37,16 @@ def build_agent():
     return create_agent(config.llm(), TOOLS, system_prompt=_system())
 
 
+from langchain_core.messages import HumanMessage
+
+
 def run(agent, session_id: str, user_input: str, run_config: dict | None = None) -> str:
     """One turn. Loads/saves history in Redis. run_config carries Chainlit callbacks."""
     hist = RedisChatMessageHistory(session_id, url=config.REDIS_URL)
-    hist.add_user_message(user_input)
+    messages_input = list(hist.messages)
+    
+    user_msg = HumanMessage(content=user_input)
+    messages_input.append(user_msg)
 
     lf_cb = CallbackHandler()
 
@@ -52,9 +58,13 @@ def run(agent, session_id: str, user_input: str, run_config: dict | None = None)
         run_config["metadata"] = {}
     run_config["metadata"]["langfuse_session_id"] = session_id
 
-    result = agent.invoke({"messages": hist.messages}, config=run_config)
+    result = agent.invoke({"messages": messages_input}, config=run_config)
+    
+    new_msgs = result["messages"][len(messages_input) - 1:]
+    for msg in new_msgs:
+        hist.add_message(msg)
+        
     answer = _text(result["messages"][-1].content)
-    hist.add_ai_message(answer)
     return answer
 
 

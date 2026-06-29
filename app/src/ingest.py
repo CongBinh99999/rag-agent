@@ -1,17 +1,99 @@
 """File -> markdown (markitdown) -> chunks -> embed -> Qdrant + Mongo."""
+import base64
 import sys
 import uuid
-
+import xml.etree.ElementTree as ET
+from pathlib import Path
+from langchain_core.messages import HumanMessage
 from markitdown import MarkItDown
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client.models import PointStruct
 
 from . import config, stores, embeddings
+from .gemini_wrapper import GeminiOpenAIWrapper
 
-_md = MarkItDown(enable_plugins=False)
+# Instantiate MarkItDown with OCR/Vision plugins enabled using gemini-3.1-flash-lite
+_gemini_wrapper = GeminiOpenAIWrapper(config.llm())
+_md = MarkItDown(
+    enable_plugins=True,
+    llm_client=_gemini_wrapper,
+    llm_model=config.LLM_MODEL
+)
 _splitter = RecursiveCharacterTextSplitter(
     chunk_size=config.CHUNK_SIZE, chunk_overlap=config.CHUNK_OVERLAP
 )
+
+def describe_image(image_path: str) -> str:
+    """Invokes Gemini Multimodal to describe raw image contents and perform OCR."""
+    path = Path(image_path)
+    suffix = path.suffix.lower()
+    
+    # Determine MIME type
+    mime_type = "image/png"
+    if suffix in (".jpg", ".jpeg"):
+        mime_type = "image/jpeg"
+    elif suffix == ".webp":
+        mime_type = "image/webp"
+    elif suffix == ".gif":
+        mime_type = "image/gif"
+        
+    with open(image_path, "rb") as f:
+        img_bytes = f.read()
+    img_b64 = base64.b64encode(img_bytes).decode("utf-8")
+    
+    prompt = (
+        "You are an expert visual analyzer and OCR engine. Describe this image in detail for a RAG search database.\n\n"
+        "Ensure you include:\n"
+        "1. IMAGE TYPE: (e.g., Architecture Diagram, Flowchart, Plot/Chart, UI Screenshot, Illustration, Photo).\n"
+        "2. MAIN TOPIC: A concise summary of what this image shows.\n"
+        "3. DETAILED CONTENT: Describe all visual components, connections, boxes, arrows, flows, and relationships.\n"
+        "4. COMPLETE OCR: Extract all text visible in the image. For tables or charts, represent them as Markdown tables.\n"
+        "Format the output clearly using Markdown headings."
+    )
+    
+    message = HumanMessage(
+        content=[
+            {"type": "text", "text": prompt},
+            {
+                "type": "image_url",
+                "image_url": {"url": f"data:{mime_type};base64,{img_b64}"},
+            },
+        ]
+    )
+    
+    response = config.llm().invoke([message])
+    content = response.content
+    if isinstance(content, list):
+        content = "".join(item.get("text", "") for item in content if isinstance(item, dict))
+    return content
+
+def parse_svg(svg_path: str) -> str:
+    """Parses SVG XML directly to extract text elements."""
+    try:
+        tree = ET.parse(svg_path)
+        root = tree.getroot()
+        
+        text_elements = []
+        # Find all text and tspan tags
+        for elem in root.findall('.//{http://www.w3.org/2000/svg}text') + root.findall('.//text'):
+            if elem.text:
+                text_elements.append(elem.text.strip())
+            for child in elem:
+                if child.text:
+                    text_elements.append(child.text.strip())
+                    
+        # Find title and desc
+        for tag in ['title', 'desc']:
+            for elem in root.findall(f'.//{{http://www.w3.org/2000/svg}}{tag}') + root.findall(f'.//{tag}'):
+                if elem.text:
+                    text_elements.append(f"{tag.capitalize()}: {elem.text.strip()}")
+                    
+        unique_texts = list(dict.fromkeys(filter(None, text_elements)))
+        return "\n".join(unique_texts)
+    except Exception as e:
+        print(f"Error parsing XML from SVG {svg_path}: {e}")
+        return ""
+
 
 
 def _is_sep(line: str) -> bool:
@@ -70,6 +152,9 @@ def _row_headers(markdown: str) -> dict[str, str]:
         if _is_sep(line) and i > 0:
             header = f"{lines[i-1].strip()}\n{line.strip()}"
             continue
+        if not line.strip().startswith("|"):
+            header = None
+            continue
         if header and line.strip().startswith("|") and not _is_sep(line):
             mapping[line.strip()] = header
     return mapping
@@ -90,24 +175,59 @@ def _restore_headers(chunk: str, row2hdr: dict[str, str]) -> str:
 import re
 from pathlib import Path
 
-def _find_nearest_header(markdown: str, chunk: str) -> str | None:
+def _find_nearest_header(markdown: str, chunk: str, start_idx: int = 0) -> tuple[str | None, int]:
     """Find the nearest markdown heading preceding the chunk's content."""
-    idx = markdown.find(chunk)
+    idx = markdown.find(chunk, start_idx)
     if idx == -1:
-        return None
+        idx = markdown.find(chunk)  # fallback
+        if idx == -1:
+            return None, start_idx
     text_before = markdown[:idx]
     lines = text_before.splitlines()
     for line in reversed(lines):
         line_s = line.strip()
-        if line_s.startswith("#") or re.match(r"^\d+\.\s+[A-Z]", line_s):
-            return line_s
-    return None
+        if re.match(r"^#{1,6}\s+\S", line_s) or re.match(r"^\d+(\.\d+)*\.\s+\w", line_s):
+            return line_s, idx
+    return None, idx
 
 
 def ingest(path: str, org_id: str | None = None) -> int:
-    """Convert one file, store chunks. Returns number of chunks indexed."""
+    """Convert one file (document or image), store chunks. Returns chunks indexed."""
     org_id = org_id or config.ORG_ID
-    markdown = _md.convert(path).text_content
+    file_path = Path(path)
+    suffix = file_path.suffix.lower()
+    
+    # Check if the file is an image
+    is_image = suffix in (".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg")
+    
+    if is_image:
+        markdown = ""
+        # 1. Handle SVG text extraction first
+        if suffix == ".svg":
+            svg_text = parse_svg(path)
+            if svg_text:
+                markdown += f"### Raw Text Content from Vector SVG:\n{svg_text}\n\n"
+            
+            # Optional SVG to PNG conversion for multimodal vision description
+            try:
+                import cairosvg
+                temp_png = file_path.with_suffix(".temp.png")
+                cairosvg.svg2png(url=str(file_path), write_to=str(temp_png))
+                visual_desc = describe_image(str(temp_png))
+                markdown += f"### Visual Layout & Description:\n{visual_desc}"
+                temp_png.unlink()  # Clean up
+            except Exception as e:
+                print(f"Skipping SVG visual analysis: cairosvg not working/installed ({e})")
+                if not svg_text:
+                    markdown = f"SVG file without extractable text or render support: {file_path.name}"
+        else:
+            # 2. Standard raster image visual description
+            markdown = describe_image(path)
+            
+    else:
+        # Standard document extraction using MarkItDown (which now handles embedded image OCR)
+        markdown = _md.convert(path).text_content
+        
     if not markdown.strip():
         return 0
 
@@ -117,12 +237,16 @@ def ingest(path: str, org_id: str | None = None) -> int:
     raw_chunks = _splitter.split_text(markdown)
     
     chunks = []
+    start_idx = 0
     for c in raw_chunks:
         c_restored = _restore_headers(c, row2hdr)
         
         # Build contextual prefix
-        hdr = _find_nearest_header(markdown, c)
-        context_prefix = f"Document: {Path(path).name}"
+        hdr, match_idx = _find_nearest_header(markdown, c, start_idx)
+        if match_idx != -1:
+            start_idx = match_idx + len(c)
+            
+        context_prefix = f"Document: {file_path.name}"
         if hdr and hdr not in c:
             header_text = hdr.lstrip("# ").strip()
             context_prefix += f" | Section: {header_text}"

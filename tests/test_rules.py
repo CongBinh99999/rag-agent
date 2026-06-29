@@ -21,6 +21,12 @@ ORG_B = "test-org-b"
 
 def _clean():
     config.db()["rules"].delete_many({"org_id": {"$in": [ORG_A, ORG_B]}})
+    import redis
+    try:
+        r = redis.Redis.from_url(config.REDIS_URL)
+        r.delete("message_store:rules-1", "message_store:rules-2")
+    except Exception as e:
+        print("Warning: could not clear Redis history:", e)
 
 
 def _set_org(org_id: str):
