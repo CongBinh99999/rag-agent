@@ -2,11 +2,27 @@
 Run build: python -m src.graph
 """
 import json
+import re
 import sys
 
 from . import config
 
 _PROMPT = None
+_REL_ALIASES = {
+    "IS_ROLE": "HAS_ROLE",
+    "WORKS_AS": "HAS_ROLE",
+    "HAS_POSITION": "HAS_ROLE",
+    "RECORDED": "RECORDED_BY",
+    "HAS_MITIGATION": "MITIGATED_BY",
+}
+_VAGUE_RELS = {"RELATED_TO", "IS_RELATED_TO", "ABOUT", "HAS_THING", "DOES"}
+
+
+def _normalize_rel(rel: str) -> str:
+    normalized = re.sub(r"[^A-Za-z0-9]+", "_", rel).strip("_").upper()
+    if not normalized or normalized in _VAGUE_RELS or normalized.count("_") > 4:
+        return "MENTIONS"
+    return _REL_ALIASES.get(normalized, normalized)
 
 
 def _prompt() -> str:
@@ -29,11 +45,14 @@ def _extract(text: str) -> list[dict]:
 
 
 def _write(tx, src: str, rel: str, dst: str, org_id: str) -> None:
+    rel_type = _normalize_rel(rel)
+    assert re.fullmatch(r"[A-Z0-9_]+", rel_type)
     tx.run(
-        "MERGE (a:Entity {name:$src, org_id:$org}) "
-        "MERGE (b:Entity {name:$dst, org_id:$org}) "
-        "MERGE (a)-[r:REL {type:$rel}]->(b)",
-        src=src, dst=dst, rel=rel, org=org_id,
+        f"MERGE (a:Entity {{name:$src, org_id:$org}}) "
+        f"MERGE (b:Entity {{name:$dst, org_id:$org}}) "
+        f"MERGE (a)-[r:`{rel_type}`]->(b) "
+        f"SET r.raw_type = $raw_rel",
+        src=src, dst=dst, raw_rel=rel, org=org_id,
     )
 
 
@@ -91,16 +110,37 @@ def ingest_doc_graph(source_path: str, org_id: str | None = None) -> int:
 
 
 def query(entity: str, org_id: str | None = None, limit: int = 25) -> str:
-    """Find relationships touching entities whose name matches the query term."""
+    """Find relationships near entities whose name matches the query term."""
     org_id = org_id or config.ORG_ID
     queries = _expand_entity(entity)
-    cypher = (
-        "MATCH (a:Entity {org_id:$org})-[r:REL]->(b:Entity) "
-        "WHERE ANY(q IN $queries WHERE toLower(a.name) CONTAINS toLower(q) OR toLower(b.name) CONTAINS toLower(q)) "
-        "RETURN a.name AS s, r.type AS rel, b.name AS o LIMIT $lim"
+    match_cypher = (
+        "MATCH (n:Entity {org_id:$org}) "
+        "WHERE ANY(q IN $queries WHERE toLower(n.name) CONTAINS toLower(q)) "
+        "RETURN DISTINCT n.name AS name LIMIT $lim"
+    )
+    direct_cypher = (
+        "MATCH (m:Entity {org_id:$org}) "
+        "WHERE m.name IN $matched "
+        "MATCH (a:Entity {org_id:$org})-[r]->(b:Entity {org_id:$org}) "
+        "WHERE a = m OR b = m "
+        "RETURN a.name AS s, type(r) AS rel, b.name AS o LIMIT $lim"
+    )
+    neighborhood_cypher = (
+        "MATCH (m:Entity {org_id:$org}) "
+        "WHERE m.name IN $matched "
+        "MATCH p=(m)-[*1..2]-(x:Entity {org_id:$org}) "
+        "UNWIND relationships(p) AS r "
+        "WITH DISTINCT startNode(r) AS a, r, endNode(r) AS b "
+        "RETURN a.name AS s, type(r) AS rel, b.name AS o LIMIT $lim"
     )
     with config.neo4j().session() as s:
-        rows = s.run(cypher, queries=queries, org=org_id, lim=limit).data()
+        matched = [r["name"] for r in s.run(match_cypher, queries=queries, org=org_id, lim=limit).data()]
+        exact_matches = [name for name in matched if entity.casefold() == name.casefold()]
+        if exact_matches:
+            matched = exact_matches
+        if not matched:
+            return "No graph relationships found for that term."
+        rows = s.run(direct_cypher if exact_matches else neighborhood_cypher, matched=matched, org=org_id, lim=limit).data()
     if not rows:
         return "No graph relationships found for that term."
     return "\n".join(f"({r['s']}) -{r['rel']}-> ({r['o']})" for r in rows)

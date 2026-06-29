@@ -17,8 +17,11 @@
   - Extract only facts explicitly stated in the text. Do not infer or derive
     relationships from indirect associations.
   - Entity names must be short, canonical noun phrases.
-  - Relation labels must be UPPER_SNAKE_CASE verbs.
-  - Return at most 25 triples for this document.
+  - Relation labels must be concise UPPER_SNAKE_CASE predicates.
+  - Use an open relation vocabulary: create domain-specific relation labels when
+    the text needs them, but prefer the same label for the same meaning.
+  - Do not use vague labels such as RELATED_TO, ABOUT, HAS_THING, or DOES when a
+    more specific relation can be named.
   </constraints>
 
   <output_format>

@@ -231,3 +231,7 @@ chat_history.db-wal
 .claude
 .deepeval
 .superpowers/
+
+# Excluded files
+docs/
+eval_multi_result.json
